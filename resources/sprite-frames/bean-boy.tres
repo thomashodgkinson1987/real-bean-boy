@@ -1,0 +1,58 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c1w08xof4xi2a"]
+
+[ext_resource type="Texture2D" uid="uid://b0rqyey1nfmyq" path="res://resources/atlas-textures/bean-boy/default.tres" id="1_53pis"]
+[ext_resource type="Texture2D" uid="uid://boydhro1lt1rl" path="res://resources/atlas-textures/bean-boy/fall.tres" id="2_pxppw"]
+[ext_resource type="Texture2D" uid="uid://yowwjai88hsu" path="res://resources/atlas-textures/bean-boy/idle-1.tres" id="3_emgfs"]
+[ext_resource type="Texture2D" uid="uid://dg0wccyrs5uj" path="res://resources/atlas-textures/bean-boy/idle-2.tres" id="4_7m2go"]
+[ext_resource type="Texture2D" uid="uid://ch5igbn5lvlof" path="res://resources/atlas-textures/bean-boy/jump.tres" id="5_qti5r"]
+[ext_resource type="Texture2D" uid="uid://c2f18y5y6r6cb" path="res://resources/atlas-textures/bean-boy/walk-1.tres" id="6_nsbde"]
+[ext_resource type="Texture2D" uid="uid://cx5ymi8xcopt2" path="res://resources/atlas-textures/bean-boy/walk-2.tres" id="7_g8ajd"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_53pis")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pxppw")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_emgfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7m2go")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qti5r")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nsbde")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g8ajd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

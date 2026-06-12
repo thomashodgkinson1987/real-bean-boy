@@ -32,6 +32,13 @@ project/assembly_name="RealBeanBoy"
 
 naming/scene_name_casing=3
 
+[layer_names]
+
+2d_physics/layer_1="BeanBoy"
+2d_physics/layer_2="Ground"
+2d_physics/layer_3="Platform"
+2d_physics/layer_4="BeanCoin"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

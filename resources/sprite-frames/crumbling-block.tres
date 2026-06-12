@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dq61lhxur2krl"]
+
+[ext_resource type="Texture2D" uid="uid://c8of0027jyuwa" path="res://resources/atlas-textures/crumbling-block/frame-1.tres" id="1_vf1ya"]
+[ext_resource type="Texture2D" uid="uid://c1gkt74k7hpyl" path="res://resources/atlas-textures/crumbling-block/frame-2.tres" id="2_qpbmj"]
+[ext_resource type="Texture2D" uid="uid://bue2udlyr6l4k" path="res://resources/atlas-textures/crumbling-block/frame-3.tres" id="3_v0bm1"]
+[ext_resource type="Texture2D" uid="uid://hkvvj73t3tko" path="res://resources/atlas-textures/crumbling-block/frame-4.tres" id="4_mu4e8"]
+[ext_resource type="Texture2D" uid="uid://ckj0xnypape6o" path="res://resources/atlas-textures/crumbling-block/frame-5.tres" id="5_en1cy"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vf1ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qpbmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_v0bm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mu4e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_en1cy")
+}],
+"loop": true,
+"name": &"crumble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vf1ya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

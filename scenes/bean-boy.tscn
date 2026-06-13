@@ -12,7 +12,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1498586983]
 sprite_frames = ExtResource("1_bn85a")
-animation = &"idle"
 autoplay = "idle"
 centered = false
 metadata/_edit_lock_ = true

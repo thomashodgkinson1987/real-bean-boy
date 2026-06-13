@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" format=3 uid="uid://bidy5avddmjn2"]
 
-[ext_resource type="Texture2D" uid="uid://b1nllmpxgeyfo" path="res://assets/images/bean-boy-spritesheet.png" id="1_joj6s"]
+[ext_resource type="Texture2D" uid="uid://b1nllmpxgeyfo" path="res://assets/images/bean-boy-spritesheet.png" id="1_bnxof"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ugpj"]
-texture = ExtResource("1_joj6s")
+texture = ExtResource("1_bnxof")
 texture_region_size = Vector2i(8, 8)
 1:0/0 = 0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)

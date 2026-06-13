@@ -1,4 +1,14 @@
 [gd_scene format=3 uid="uid://odmhhm3ivxgn"]
 
+[ext_resource type="PackedScene" uid="uid://bqwqnw8cxpw0c" path="res://scenes/tile-map-layers/sky.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://6qbsfvwkyk3t" path="res://scenes/tile-map-layers/ground.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://dei8nj5qobmvi" path="res://scenes/tile-map-layers/decorations.tscn" id="3_sugp2"]
+
 [node name="Main" type="Node2D" unique_id=284015859]
 metadata/_edit_lock_ = true
+
+[node name="Sky" parent="." unique_id=235753748 instance=ExtResource("1_sugp2")]
+
+[node name="Ground" parent="." unique_id=1569333494 instance=ExtResource("2_jyhfs")]
+
+[node name="Decorations" parent="." unique_id=328294129 instance=ExtResource("3_sugp2")]

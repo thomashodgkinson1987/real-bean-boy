@@ -6,7 +6,7 @@
 size = Vector2(6, 7)
 
 [node name="BeanBoy" type="CharacterBody2D" unique_id=170894175]
-collision_mask = 14
+collision_mask = 30
 platform_floor_layers = 4294901760
 metadata/_edit_group_ = true
 

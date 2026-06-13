@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://belded6jdwlr"]
 
 [ext_resource type="SpriteFrames" uid="uid://c1w08xof4xi2a" path="res://resources/sprite-frames/bean-boy.tres" id="1_bn85a"]
+[ext_resource type="Script" uid="uid://buwwx1xlaibtg" path="res://scripts/BeanBoy.cs" id="1_xmxqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bn85a"]
 size = Vector2(6, 7)
@@ -8,6 +9,7 @@ size = Vector2(6, 7)
 [node name="BeanBoy" type="CharacterBody2D" unique_id=170894175]
 collision_mask = 30
 platform_floor_layers = 4294901760
+script = ExtResource("1_xmxqy")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1498586983]

@@ -14,10 +14,10 @@ public partial class LevelSection : Node2D
 	{
 		Array<Vector2I> tiles = skyLayer.GetUsedCells();
 
-		int minX = 0;
-		int minY = 0;
-		int maxX = 0;
-		int maxY = 0;
+		int minX = int.MaxValue;
+		int minY = int.MaxValue;
+		int maxX = int.MinValue;
+		int maxY = int.MinValue;
 
 		foreach (Vector2I v in tiles)
 		{

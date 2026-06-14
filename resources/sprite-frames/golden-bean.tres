@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cf4or3ajii5rf"]
 
-[ext_resource type="Texture2D" uid="uid://q55mjjf8dh1k" path="res://resources/atlas-textures/green-bean/frame-1.tres" id="1_idven"]
-[ext_resource type="Texture2D" uid="uid://dm7gknyfbu7ey" path="res://resources/atlas-textures/green-bean/frame-2.tres" id="2_hc5uo"]
+[ext_resource type="Texture2D" uid="uid://dhdpf7pskj5m5" path="res://resources/atlas-textures/golden-bean/frame-1.tres" id="1_idven"]
+[ext_resource type="Texture2D" uid="uid://dj84pmtu2nbdd" path="res://resources/atlas-textures/golden-bean/frame-2.tres" id="2_hc5uo"]
 
 [resource]
 animations = [{

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://87onr1im1eow"]
+
+[ext_resource type="SpriteFrames" uid="uid://4cp5alh47f6d" path="res://resources/sprite-frames/pink-flower.tres" id="1_r7hm2"]
+[ext_resource type="Script" uid="uid://1ks741ht44hl" path="res://scripts/tiles/PinkFlower.cs" id="2_p5knt"]
+
+[node name="PinkFlower" type="AnimatedSprite2D" unique_id=334388607]
+z_index = -2
+sprite_frames = ExtResource("1_r7hm2")
+script = ExtResource("2_p5knt")

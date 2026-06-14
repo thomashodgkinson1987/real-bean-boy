@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" format=3 uid="uid://ca0lqiofju08l"]
 
-[ext_resource type="Texture2D" uid="uid://b1nllmpxgeyfo" path="res://assets/images/bean-boy-spritesheet.png" id="1_qxxro"]
+[ext_resource type="Texture2D" uid="uid://d2yimvqy26a25" path="res://assets/images/sprite-sheets/bean-can.png" id="1_qxxro"]
 
 [resource]
 atlas = ExtResource("1_qxxro")
-region = Rect2(40, 8, 8, 8)
+region = Rect2(8, 8, 8, 8)

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://bpnlqdfp3rnrt"]
+
+[ext_resource type="Texture2D" uid="uid://c001386s4xi4h" path="res://assets/images/sprite-sheets/sprout-valley.png" id="1_3ulqo"]
+
+[resource]
+atlas = ExtResource("1_3ulqo")
+region = Rect2(48, 0, 8, 8)

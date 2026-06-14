@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bw1vg2wh5odel"]
+
+[ext_resource type="Texture2D" uid="uid://cd0y008wraffe" path="res://resources/atlas-textures/animated-grass/frame-1.tres" id="1_vag3g"]
+[ext_resource type="Texture2D" uid="uid://dnlgacefvo4pb" path="res://resources/atlas-textures/animated-grass/frame-2.tres" id="2_brxnj"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vag3g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_brxnj")
+}],
+"loop": true,
+"name": &"animate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vag3g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

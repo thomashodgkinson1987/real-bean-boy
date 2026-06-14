@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dwvs5w6uy2n8n"]
+
+[ext_resource type="Texture2D" uid="uid://bu7wclmdt65hl" path="res://resources/atlas-textures/sprout-valley/clouds/type-2.tres" id="1_yann5"]
+[ext_resource type="Script" uid="uid://s4ktd64gfmc5" path="res://scripts/Cloud.cs" id="2_w24br"]
+
+[node name="CloudType2" type="Sprite2D" unique_id=1023483058]
+texture = ExtResource("1_yann5")
+centered = false
+script = ExtResource("2_w24br")

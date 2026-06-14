@@ -1,0 +1,26 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c8mwhdxqj5y38"]
+
+[ext_resource type="Texture2D" uid="uid://fvh62o2nfh42" path="res://resources/atlas-textures/white-spike-ball/frame-1.tres" id="1_bt7wp"]
+[ext_resource type="Texture2D" uid="uid://ci8wya2u0cay8" path="res://resources/atlas-textures/white-spike-ball/frame-2.tres" id="2_ive8s"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bt7wp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bt7wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ive8s")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]

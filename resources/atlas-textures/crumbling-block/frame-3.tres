@@ -1,7 +1,7 @@
 [gd_resource type="AtlasTexture" format=3 uid="uid://bue2udlyr6l4k"]
 
-[ext_resource type="Texture2D" uid="uid://b1nllmpxgeyfo" path="res://assets/images/bean-boy-spritesheet.png" id="1_m0jdw"]
+[ext_resource type="Texture2D" uid="uid://cugaphm3g4hys" path="res://assets/images/sprite-sheets/crumbling-block.png" id="1_m0jdw"]
 
 [resource]
 atlas = ExtResource("1_m0jdw")
-region = Rect2(8, 24, 8, 8)
+region = Rect2(16, 0, 8, 8)

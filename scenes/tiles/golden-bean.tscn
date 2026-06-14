@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c5l8s6nasl0xh"]
+
+[ext_resource type="Script" uid="uid://bqye1plpxpjwx" path="res://scripts/tiles/GoldenBean.cs" id="1_uai7x"]
+[ext_resource type="SpriteFrames" uid="uid://cf4or3ajii5rf" path="res://resources/sprite-frames/golden-bean.tres" id="1_ydcrh"]
+[ext_resource type="AudioStream" uid="uid://bnkpmy4qmg708" path="res://assets/sounds/silence-1s.ogg" id="3_7r1tk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a323h"]
+radius = 3.0
+
+[node name="GoldenBean" type="Area2D" unique_id=683382625]
+collision_layer = 8
+input_pickable = false
+script = ExtResource("1_uai7x")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=27257078]
+z_index = -1
+sprite_frames = ExtResource("1_ydcrh")
+autoplay = "spin"
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=711316083]
+visible = false
+shape = SubResource("CircleShape2D_a323h")
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1022540368]
+stream = ExtResource("3_7r1tk")

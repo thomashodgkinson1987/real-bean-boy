@@ -2,8 +2,18 @@ using Godot;
 
 public partial class BeanBoy : CharacterBody2D
 {
+	private AnimatedSprite2D animatedSprite2D;
+
 	[Export] public float Speed = 48.0f;
 	[Export] public float JumpVelocity = -64.0f;
+
+	private float timer = 0.0f;
+	private float timeLimit = 1.0f;
+
+	public override void _Ready()
+	{
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -35,5 +45,35 @@ public partial class BeanBoy : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+
+		//
+
+		animatedSprite2D.FlipH = Velocity.X < 0 || (Velocity.X <= 0 && animatedSprite2D.FlipH);
+
+		if (!IsOnFloor())
+		{
+			timer = 0.0f;
+			animatedSprite2D.Animation = "jump";
+		}
+		else if (Velocity.X != 0)
+		{
+			timer = 0.0f;
+			animatedSprite2D.Animation = "walk";
+		}
+		else
+		{
+			if (animatedSprite2D.Animation != "idle")
+			{
+				timer += (float)delta;
+				if (timer < timeLimit)
+				{
+					animatedSprite2D.Animation = "default";
+				}
+				else
+				{
+					animatedSprite2D.Animation = "idle";
+				}
+			}
+		}
 	}
 }

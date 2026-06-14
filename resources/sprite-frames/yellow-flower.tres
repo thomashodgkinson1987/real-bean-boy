@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://csch2uw8dhkoy"]
+
+[ext_resource type="Texture2D" uid="uid://b3758yv4igfcu" path="res://resources/atlas-textures/yellow-flower/frame-1.tres" id="1_afqqu"]
+[ext_resource type="Texture2D" uid="uid://djll1bw64d2cs" path="res://resources/atlas-textures/yellow-flower/frame-2.tres" id="2_urh7q"]
+[ext_resource type="Texture2D" uid="uid://dv0o1wfepyjso" path="res://resources/atlas-textures/yellow-flower/frame-3.tres" id="3_px0p7"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_afqqu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_urh7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_px0p7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_urh7q")
+}],
+"loop": true,
+"name": &"animate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_afqqu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

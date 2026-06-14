@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://djll1bw64d2cs"]
+
+[ext_resource type="Texture2D" uid="uid://csan15fe5tygb" path="res://assets/images/sprite-sheets/yellow-flower.png" id="1_wfljw"]
+
+[resource]
+atlas = ExtResource("1_wfljw")
+region = Rect2(8, 0, 8, 8)

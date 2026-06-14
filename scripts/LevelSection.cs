@@ -7,7 +7,7 @@ public partial class LevelSection : Node2D
 
 	public override void _Ready()
 	{
-		skyLayer = GetNode<TileMapLayer>("Sky");
+		skyLayer = GetNode<TileMapLayer>("Bounds");
 	}
 
 	public Rect2I GetBounds()
@@ -27,10 +27,10 @@ public partial class LevelSection : Node2D
 			if (v.Y * 8 > maxY) maxY = v.Y;
 		}
 
-		minX *= 8;
-		minY *= 8;
-		maxX++; maxX *= 8;
-		maxY++; maxY *= 8;
+		minX++; minX *= 8;
+		minY++; minY *= 8;
+		maxX *= 8;
+		maxY *= 8;
 
 
 		return new(minX, minY, maxX, maxY);

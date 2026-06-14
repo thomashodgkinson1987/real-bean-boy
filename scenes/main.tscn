@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://428p1gnaf01u" path="res://scenes/levels/sprout-valley.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c46265uyioe8m" path="res://scripts/MainScene.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://belded6jdwlr" path="res://scenes/bean-boy.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c4iqi04h38sjk" path="res://scenes/platform.tscn" id="4_jyhfs"]
 
 [node name="Main" type="Node2D" unique_id=284015859]
 script = ExtResource("1_sugp2")
@@ -31,3 +32,6 @@ metadata/_edit_lock_ = true
 
 [node name="SproutValley" parent="LevelHolder" unique_id=131412410 instance=ExtResource("1_o5qli")]
 metadata/_edit_lock_ = true
+
+[node name="Platform" parent="." unique_id=850952154 instance=ExtResource("4_jyhfs")]
+position = Vector2(336, 80)

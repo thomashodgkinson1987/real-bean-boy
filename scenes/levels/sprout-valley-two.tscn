@@ -18,7 +18,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4, 8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(64, 80), Vector2(112, 80), Vector2(64, 80)]
+"values": [Vector2(120, 88), Vector2(120, 8), Vector2(120, 88)]
 }
 
 [sub_resource type="Animation" id="Animation_n7q8o"]
@@ -44,6 +44,44 @@ _data = {
 &"new_animation": SubResource("Animation_n7q8o")
 }
 
+[sub_resource type="Animation" id="Animation_ng8dn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 80)]
+}
+
+[sub_resource type="Animation" id="Animation_1cp3m"]
+resource_name = "new_animation"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(64, 80), Vector2(112, 80), Vector2(64, 80)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nbptv"]
+_data = {
+&"RESET": SubResource("Animation_ng8dn"),
+&"new_animation": SubResource("Animation_1cp3m")
+}
+
 [node name="SproutValleyTwo" type="Node2D" unique_id=814268595]
 script = ExtResource("1_j3igs")
 
@@ -58,7 +96,7 @@ tile_set = ExtResource("1_qtm0x")
 metadata/_edit_lock_ = true
 
 [node name="CameraUpdate" type="TileMapLayer" parent="." unique_id=237156008]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAQAAAAEAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQAAAAQAAQAAAAAAAQAAAAUAAQAAAAAAAQAAAAYAAQAAAAAAAQAAAAcAAQAAAAAAAQAAAAgAAQAAAAAAAQAAAAkAAQAAAAAAAQAAAAoAAQAAAAAAAQAAAAsAAQAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQAAAAQAAQAAAAAAAQAAAAUAAQAAAAAAAQAAAAYAAQAAAAAAAQAAAAcAAQAAAAAAAQAAAAgAAQAAAAAAAQAAAAkAAQAAAAAAAQAAAAoAAQAAAAAAAQAAAAsAAQAAAAAAAQAAAAEAAQAAAAAAAQA=")
 tile_set = ExtResource("1_qtm0x")
 metadata/_edit_lock_ = true
 
@@ -95,7 +133,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Platform" parent="Platforms" unique_id=850952154 instance=ExtResource("4_ng8dn")]
-position = Vector2(64, 80)
+position = Vector2(120, 88)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform" unique_id=80369560]
 libraries/ = SubResource("AnimationLibrary_1cp3m")
@@ -104,6 +142,6 @@ autoplay = &"new_animation"
 [node name="Platform-2" parent="Platforms" unique_id=1977353619 instance=ExtResource("4_ng8dn")]
 position = Vector2(64, 80)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform-2" unique_id=1763289905]
-libraries/ = SubResource("AnimationLibrary_1cp3m")
-autoplay = &"RESET"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform-2" unique_id=1874279888]
+libraries/ = SubResource("AnimationLibrary_nbptv")
+autoplay = &"new_animation"

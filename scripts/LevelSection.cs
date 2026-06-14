@@ -32,7 +32,6 @@ public partial class LevelSection : Node2D
 		maxX *= 8;
 		maxY *= 8;
 
-
 		return new(minX, minY, maxX, maxY);
 	}
 }

@@ -24,7 +24,7 @@ position_smoothing_enabled = true
 editor_draw_limits = true
 
 [node name="BeanBoy" parent="." unique_id=170894175 instance=ExtResource("2_0wfyh")]
-position = Vector2(24, 88)
+position = Vector2(304, 64)
 
 [node name="LevelHolder" type="Node2D" parent="." unique_id=1822118315]
 metadata/_edit_lock_ = true

@@ -21,6 +21,9 @@ public partial class MainScene : Node2D
 		beanBoy.GetCameraSensor().AreaEntered += OnAreaEnteredBeanBoy;
 
 		UpdateCameraBounds();
+
+		camera2D.Position = beanBoy.GetCentreGlobal();
+		camera2D.ResetSmoothing();
 	}
 
 	public override void _Process(double delta)

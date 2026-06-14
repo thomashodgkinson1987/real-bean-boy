@@ -23,4 +23,10 @@ public partial class GameState : Node
 		GoldenBeansCollected++;
 		GD.Print($"GameState: CollectGoldenBean: {GoldenBeansCollected}");
 	}
+
+	public void ResetSession()
+	{
+		GreenBeansCollected = 0;
+		GoldenBeansCollected = 0;
+	}
 }

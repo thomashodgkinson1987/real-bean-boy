@@ -69,6 +69,7 @@ player_jump={
 2d_physics/layer_3="Platform"
 2d_physics/layer_4="GreenBean"
 2d_physics/layer_5="GoldenBean"
+2d_physics/layer_6="CameraUpdate"
 
 [physics]
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://34k0y1r6c02g"]
+
+[ext_resource type="Script" uid="uid://cf74j4x23e5dk" path="res://scripts/tiles/CameraUpdate.cs" id="1_vsliw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23wtk"]
+size = Vector2(6, 6)
+
+[node name="CameraUpdate" type="Area2D" unique_id=1845925062]
+collision_layer = 32
+input_pickable = false
+script = ExtResource("1_vsliw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=382903719]
+shape = SubResource("RectangleShape2D_23wtk")
+metadata/_edit_lock_ = true

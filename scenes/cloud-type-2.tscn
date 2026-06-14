@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://s4ktd64gfmc5" path="res://scripts/Cloud.cs" id="2_w24br"]
 
 [node name="CloudType2" type="Sprite2D" unique_id=1023483058]
+z_index = -4
 texture = ExtResource("1_yann5")
 centered = false
 script = ExtResource("2_w24br")

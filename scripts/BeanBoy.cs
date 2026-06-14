@@ -2,7 +2,9 @@ using Godot;
 
 public partial class BeanBoy : CharacterBody2D
 {
+	private Marker2D centreMarker;
 	private AnimatedSprite2D animatedSprite2D;
+	private Area2D cameraSensor;
 
 	[Export] public float Speed = 48.0f;
 	[Export] public float JumpVelocity = -64.0f;
@@ -12,7 +14,9 @@ public partial class BeanBoy : CharacterBody2D
 
 	public override void _Ready()
 	{
+		centreMarker = GetNode<Marker2D>("CentreMarker");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		cameraSensor = GetNode<Area2D>("CameraSensor");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -78,4 +82,20 @@ public partial class BeanBoy : CharacterBody2D
 			}
 		}
 	}
+
+	public Vector2 GetCentre()
+	{
+		return centreMarker.Position;
+	}
+
+	public Vector2 GetCentreGlobal()
+	{
+		return centreMarker.GlobalPosition;
+	}
+
+	public Area2D GetCameraSensor()
+	{
+		return cameraSensor;
+	}
+
 }

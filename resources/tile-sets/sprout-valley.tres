@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://i3mp7jl4r5vl" path="res://scenes/tiles/animated-grass.tscn" id="1_7d107"]
 [ext_resource type="PackedScene" uid="uid://87onr1im1eow" path="res://scenes/tiles/pink-flower.tscn" id="2_f1fnu"]
 [ext_resource type="PackedScene" uid="uid://chsp0rr10ss1n" path="res://scenes/tiles/yellow-flower.tscn" id="3_vqeii"]
+[ext_resource type="PackedScene" uid="uid://34k0y1r6c02g" path="res://scenes/tiles/camera-update.tscn" id="4_jfcb0"]
 [ext_resource type="Texture2D" uid="uid://c001386s4xi4h" path="res://assets/images/sprite-sheets/sprout-valley.png" id="4_tft8y"]
 [ext_resource type="Texture2D" uid="uid://84oiwbnw7jt4" path="res://assets/images/sprite-sheets/static-grass.png" id="5_7d107"]
 
@@ -11,6 +12,10 @@ resource_name = "animated"
 scenes/1/scene = ExtResource("1_7d107")
 scenes/2/scene = ExtResource("2_f1fnu")
 scenes/3/scene = ExtResource("3_vqeii")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7d107"]
+resource_name = "utility"
+scenes/1/scene = ExtResource("4_jfcb0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f1fnu"]
 texture = ExtResource("4_tft8y")
@@ -37,3 +42,4 @@ physics_layer_0/collision_layer = 2
 sources/3 = SubResource("TileSetAtlasSource_f1fnu")
 sources/6 = SubResource("TileSetAtlasSource_x32f3")
 sources/0 = SubResource("TileSetScenesCollectionSource_jfcb0")
+sources/1 = SubResource("TileSetScenesCollectionSource_7d107")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://odmhhm3ivxgn"]
 
-[ext_resource type="PackedScene" uid="uid://dhs0ybs38kqf1" path="res://scenes/levels/sprout-valley.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://428p1gnaf01u" path="res://scenes/levels/sprout-valley.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c46265uyioe8m" path="res://scripts/MainScene.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://belded6jdwlr" path="res://scenes/bean-boy.tscn" id="2_0wfyh"]
 
@@ -9,7 +9,7 @@ script = ExtResource("1_sugp2")
 metadata/_edit_lock_ = true
 
 [node name="CentreMarker" type="Marker2D" parent="." unique_id=1501982950]
-position = Vector2(64, 64)
+position = Vector2(192, 64)
 gizmo_extents = 0.0
 metadata/_edit_lock_ = true
 
@@ -19,13 +19,15 @@ limit_left = 0
 limit_top = 0
 limit_right = 128
 limit_bottom = 128
+limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
 
-[node name="Level" type="Node2D" parent="." unique_id=1325936202]
+[node name="BeanBoy" parent="." unique_id=170894175 instance=ExtResource("2_0wfyh")]
+position = Vector2(24, 88)
+
+[node name="LevelHolder" type="Node2D" parent="." unique_id=1822118315]
 metadata/_edit_lock_ = true
 
-[node name="SproutValley" parent="Level" unique_id=814268595 instance=ExtResource("1_o5qli")]
-
-[node name="BeanBoy" parent="." unique_id=170894175 instance=ExtResource("2_0wfyh")]
-position = Vector2(32, 88)
+[node name="SproutValley" parent="LevelHolder" unique_id=131412410 instance=ExtResource("1_o5qli")]
+metadata/_edit_lock_ = true

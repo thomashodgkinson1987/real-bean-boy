@@ -5,8 +5,8 @@
 # Usage:
 #   ./publish_release.sh <version-tag> [description-file] [webhook-url]
 #
-#   <version-tag>     Required. e.g. v0.0.8
-#   [description-file]  Optional. Path to a text file with release notes.
+#   <version-tag>       Required. e.g. v0.0.8
+#   [description-file]  Optional. Path to a markdown file with release notes.
 #   [webhook-url]       Optional. Discord webhook URL (overrides env var).
 #
 # To avoid passing the webhook URL every time, export it in your ~/.bashrc:

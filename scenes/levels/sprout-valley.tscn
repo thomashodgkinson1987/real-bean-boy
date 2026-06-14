@@ -21,57 +21,71 @@ metadata/_edit_lock_ = true
 [node name="SproutValleyTwo" parent="Sections" unique_id=1083018919 instance=ExtResource("3_ra1m8")]
 position = Vector2(256, 0)
 
-[node name="Clouds" type="Node2D" parent="." unique_id=1773662986]
+[node name="Clouds" type="Parallax2D" parent="." unique_id=1885782110]
+scroll_scale = Vector2(0.2, 0.2)
 metadata/_edit_lock_ = true
 
 [node name="CloudType1" parent="Clouds" unique_id=1023483058 instance=ExtResource("3_wqka4")]
 position = Vector2(8, 16)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType1-2" parent="Clouds" unique_id=265823346 instance=ExtResource("3_wqka4")]
 position = Vector2(48, 8)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType1-3" parent="Clouds" unique_id=1692934878 instance=ExtResource("3_wqka4")]
 position = Vector2(88, 16)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType1-4" parent="Clouds" unique_id=607628349 instance=ExtResource("3_wqka4")]
 position = Vector2(232, 16)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType1-5" parent="Clouds" unique_id=1652192267 instance=ExtResource("3_wqka4")]
 position = Vector2(352, 8)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType1-6" parent="Clouds" unique_id=426139359 instance=ExtResource("3_wqka4")]
 position = Vector2(296, 0)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2" parent="Clouds" unique_id=2103968534 instance=ExtResource("4_fvvs8")]
 position = Vector2(24, 0)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-2" parent="Clouds" unique_id=985278626 instance=ExtResource("4_fvvs8")]
 position = Vector2(112, 0)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-3" parent="Clouds" unique_id=50484758 instance=ExtResource("4_fvvs8")]
 position = Vector2(192, 0)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-4" parent="Clouds" unique_id=1356762535 instance=ExtResource("4_fvvs8")]
 position = Vector2(152, 16)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-5" parent="Clouds" unique_id=1346380928 instance=ExtResource("4_fvvs8")]
 position = Vector2(312, 16)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-6" parent="Clouds" unique_id=598028420 instance=ExtResource("4_fvvs8")]
 position = Vector2(376, 0)
+Speed = 4.0
 RightBounds = 384
 
 [node name="CloudType2-7" parent="Clouds" unique_id=438182834 instance=ExtResource("4_fvvs8")]
 position = Vector2(264, 8)
+Speed = 4.0
 RightBounds = 384

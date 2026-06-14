@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -16,12 +17,12 @@ public partial class MainScene : Node2D
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		beanBoy = GetNode<BeanBoy>("BeanBoy");
 
-		level = levelHolder.GetChild<Level>(0);
-
 		beanBoy.GetCameraSensor().AreaEntered += OnAreaEnteredBeanBoy;
 
-		UpdateCameraBounds();
+		level = levelHolder.GetChild<Level>(0);
+		levelSection = GetCurrentLevelSection();
 
+		SetCameraBounds(levelSection);
 		camera2D.Position = beanBoy.GetCentreGlobal();
 		camera2D.ResetSmoothing();
 	}
@@ -37,23 +38,10 @@ public partial class MainScene : Node2D
 			GetTree().ReloadCurrentScene();
 		}
 
-		// Vector2 beanBoyPosition = beanBoy.GetCentreGlobal();
-		// int beanBoyX = (int)beanBoyPosition.X;
-		// int beanBoyY = (int)beanBoyPosition.Y;
-		// int beanBoyCellX = beanBoyX / 128;
-		// int beanBoyCellY = beanBoyY / 128;
-
-		// camera2D.Position = new Vector2(64 + beanBoyCellX * 128, 64 + beanBoyCellY * 128);
-
 		camera2D.Position = beanBoy.GetCentreGlobal();
 	}
 
-	private void OnAreaEnteredBeanBoy(Area2D area)
-	{
-		UpdateCameraBounds();
-	}
-
-	private void UpdateCameraBounds()
+	private LevelSection GetCurrentLevelSection()
 	{
 		List<LevelSection> sections = level.GetSections();
 
@@ -67,13 +55,35 @@ public partial class MainScene : Node2D
 				beanBoy.GetCentreGlobal().Y > position.Y + rect.Position.Y &&
 				beanBoy.GetCentreGlobal().Y < position.Y + rect.End.Y)
 			{
-				levelSection = sections[i];
-				camera2D.LimitLeft = (int)position.X + rect.Position.X;
-				camera2D.LimitRight = (int)position.X + rect.End.X;
-				camera2D.LimitTop = (int)position.Y + rect.Position.Y;
-				camera2D.LimitBottom = (int)position.Y + rect.End.Y;
-				break;
+				return sections[i];
 			}
 		}
+
+		return null;
+	}
+
+	private void OnAreaEnteredBeanBoy(Area2D area)
+	{
+		UpdateCameraBounds();
+	}
+
+	private void UpdateCameraBounds()
+	{
+		if (GetCurrentLevelSection() is LevelSection liveSection && liveSection != levelSection)
+		{
+			levelSection = liveSection;
+			SetCameraBounds(levelSection);
+		}
+	}
+
+	private void SetCameraBounds(LevelSection section)
+	{
+		Vector2 position = section.Position;
+		Rect2I rect = section.GetBounds();
+
+		camera2D.LimitLeft = (int)position.X + rect.Position.X;
+		camera2D.LimitRight = (int)position.X + rect.End.X;
+		camera2D.LimitTop = (int)position.Y + rect.Position.Y;
+		camera2D.LimitBottom = (int)position.Y + rect.End.Y;
 	}
 }

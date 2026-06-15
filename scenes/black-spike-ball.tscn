@@ -1,19 +1,19 @@
-[gd_scene format=3 uid="uid://csim402asud84"]
+[gd_scene format=3 uid="uid://pngln66leiei"]
 
-[ext_resource type="Script" uid="uid://l6rhf4enuhyi" path="res://scripts/SpikeBall.cs" id="1_0a6ql"]
-[ext_resource type="SpriteFrames" uid="uid://c8mwhdxqj5y38" path="res://resources/sprite-frames/white-spike-ball.tres" id="1_ol53s"]
+[ext_resource type="Script" uid="uid://l6rhf4enuhyi" path="res://scripts/SpikeBall.cs" id="1_y7dbv"]
+[ext_resource type="SpriteFrames" uid="uid://bar4n8gripsuu" path="res://resources/sprite-frames/black-spike-ball.tres" id="2_y7dbv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0a6ql"]
 radius = 3.5
 
-[node name="WhiteSpikeBall" type="Area2D" unique_id=919842760]
+[node name="BlackSpikeBall" type="Area2D" unique_id=919842760]
 collision_layer = 64
 input_pickable = false
-script = ExtResource("1_0a6ql")
+script = ExtResource("1_y7dbv")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1421495700]
-sprite_frames = ExtResource("1_ol53s")
+sprite_frames = ExtResource("2_y7dbv")
 autoplay = "spin"
 metadata/_edit_lock_ = true
 

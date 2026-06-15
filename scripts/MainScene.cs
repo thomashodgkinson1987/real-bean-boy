@@ -1,11 +1,14 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 
 public partial class MainScene : Node2D
 {
+	[Export] private PackedScene beanBoyPackedScene;
+
 	private Camera2D camera2D;
 	private Node2D levelHolder;
+	private Node2D entitiesHolder;
+
 	private BeanBoy beanBoy;
 
 	private Level level;
@@ -13,17 +16,27 @@ public partial class MainScene : Node2D
 
 	public override void _Ready()
 	{
+		// get nodes
 		camera2D = GetNode<Camera2D>("Camera2D");
 		levelHolder = GetNode<Node2D>("LevelHolder");
-		beanBoy = GetNode<BeanBoy>("BeanBoy");
+		entitiesHolder = GetNode<Node2D>("EntitiesHolder");
 
+		// level
+		level = levelHolder.GetChild<Level>(0);
+
+		// bean boy
+		//beanBoy = GetNode<BeanBoy>("BeanBoy");
+		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
+		entitiesHolder.AddChild(beanBoy);
+		beanBoy.GlobalPosition = level.GetSpawnPoint().GlobalPosition;
 		beanBoy.GetCameraSensor().AreaEntered += OnAreaEnteredBeanBoy;
 
-		level = levelHolder.GetChild<Level>(0);
+		// level
 		levelSection = GetCurrentLevelSection();
 
+		// camera
 		SetCameraBounds(levelSection);
-		camera2D.Position = beanBoy.GetCentreGlobal();
+		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 		camera2D.ResetSmoothing();
 	}
 
@@ -38,7 +51,7 @@ public partial class MainScene : Node2D
 			GetTree().ReloadCurrentScene();
 		}
 
-		camera2D.Position = beanBoy.GetCentreGlobal();
+		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 	}
 
 	private LevelSection GetCurrentLevelSection()

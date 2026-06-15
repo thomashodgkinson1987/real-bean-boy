@@ -8,10 +8,14 @@
 
 [node name="SproutValley" type="Node2D" unique_id=131412410]
 script = ExtResource("1_ybmqh")
+metadata/_edit_lock_ = true
 
 [node name="CentreMarker" type="Marker2D" parent="." unique_id=1662385544]
 position = Vector2(192, 64)
 metadata/_edit_lock_ = true
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1321988054]
+position = Vector2(20, 92)
 
 [node name="Sections" type="Node2D" parent="." unique_id=1470717026]
 metadata/_edit_lock_ = true

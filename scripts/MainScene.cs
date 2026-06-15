@@ -4,6 +4,7 @@ using Godot;
 public partial class MainScene : Node2D
 {
 	[Export] private PackedScene beanBoyPackedScene;
+	[Export] private PackedScene sproutValleyPackedScene;
 
 	private Camera2D camera2D;
 	private Node2D levelHolder;
@@ -22,7 +23,8 @@ public partial class MainScene : Node2D
 		entitiesHolder = GetNode<Node2D>("EntitiesHolder");
 
 		// level
-		level = levelHolder.GetChild<Level>(0);
+		level = sproutValleyPackedScene.Instantiate<Level>();
+		levelHolder.AddChild(level);
 
 		// bean boy
 		//beanBoy = GetNode<BeanBoy>("BeanBoy");

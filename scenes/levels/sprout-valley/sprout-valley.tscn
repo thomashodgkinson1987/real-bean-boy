@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://428p1gnaf01u"]
 
 [ext_resource type="Script" uid="uid://cagm73ypjgk5t" path="res://scripts/Level.cs" id="1_ybmqh"]
-[ext_resource type="PackedScene" uid="uid://dhs0ybs38kqf1" path="res://scenes/levels/sprout-valley-one.tscn" id="2_jy5af"]
-[ext_resource type="PackedScene" uid="uid://dn1vgvgno7ujd" path="res://scenes/levels/sprout-valley-two.tscn" id="3_ra1m8"]
+[ext_resource type="PackedScene" uid="uid://dhs0ybs38kqf1" path="res://scenes/levels/sprout-valley/sections/sprout-valley-one.tscn" id="2_jy5af"]
+[ext_resource type="PackedScene" uid="uid://dn1vgvgno7ujd" path="res://scenes/levels/sprout-valley/sections/sprout-valley-two.tscn" id="3_ra1m8"]
 [ext_resource type="PackedScene" uid="uid://cve5ghpxsvrja" path="res://scenes/cloud-type-1.tscn" id="3_wqka4"]
 [ext_resource type="PackedScene" uid="uid://dwvs5w6uy2n8n" path="res://scenes/cloud-type-2.tscn" id="4_fvvs8"]
 

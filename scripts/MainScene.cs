@@ -27,7 +27,6 @@ public partial class MainScene : Node2D
 		levelHolder.AddChild(level);
 
 		// bean boy
-		//beanBoy = GetNode<BeanBoy>("BeanBoy");
 		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
 		entitiesHolder.AddChild(beanBoy);
 		beanBoy.GlobalPosition = level.GetSpawnPoint().GlobalPosition;

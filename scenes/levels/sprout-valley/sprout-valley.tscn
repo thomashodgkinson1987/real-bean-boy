@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dhs0ybs38kqf1" path="res://scenes/levels/sprout-valley/sections/sprout-valley-one.tscn" id="2_jy5af"]
 [ext_resource type="PackedScene" uid="uid://dn1vgvgno7ujd" path="res://scenes/levels/sprout-valley/sections/sprout-valley-two.tscn" id="3_ra1m8"]
 [ext_resource type="PackedScene" uid="uid://cve5ghpxsvrja" path="res://scenes/cloud-type-1.tscn" id="3_wqka4"]
+[ext_resource type="PackedScene" uid="uid://b683ohrnrbehd" path="res://scenes/levels/sprout-valley/sections/sprout-valley-three.tscn" id="4_63kre"]
 [ext_resource type="PackedScene" uid="uid://dwvs5w6uy2n8n" path="res://scenes/cloud-type-2.tscn" id="4_fvvs8"]
 
 [node name="SproutValley" type="Node2D" unique_id=131412410]
@@ -11,7 +12,7 @@ script = ExtResource("1_ybmqh")
 metadata/_edit_lock_ = true
 
 [node name="CentreMarker" type="Marker2D" parent="." unique_id=1662385544]
-position = Vector2(192, 64)
+position = Vector2(256, 64)
 metadata/_edit_lock_ = true
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1321988054]
@@ -26,6 +27,10 @@ metadata/_edit_lock_ = true
 
 [node name="SproutValleyTwo" parent="Sections" unique_id=1661544960 instance=ExtResource("3_ra1m8")]
 position = Vector2(256, 0)
+metadata/_edit_lock_ = true
+
+[node name="SproutValleyThree" parent="Sections" unique_id=883489407 instance=ExtResource("4_63kre")]
+position = Vector2(384, 0)
 metadata/_edit_lock_ = true
 
 [node name="Clouds" type="Parallax2D" parent="." unique_id=1885782110]

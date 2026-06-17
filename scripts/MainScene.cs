@@ -61,15 +61,11 @@ public partial class MainScene : Node2D
 	{
 		List<Room> rooms = currentLevel.GetRooms();
 
-		for (int i = 0; i < rooms.Count; i++)
+		foreach (Room room in rooms)
 		{
-			Vector2 position = rooms[i].GlobalPosition;
-			Vector2I dimensions = rooms[i].Dimensions;
-			Rect2I rect = new Rect2I((int)position.X, (int)position.Y, dimensions.X * 128, dimensions.Y * 128);
-
-			if (rect.HasPoint(beanBoy.GetCentreGlobalI()))
+			if (room.GetGlobalBoundsI().HasPoint(beanBoy.GetCentreGlobalI()))
 			{
-				return rooms[i];
+				return room;
 			}
 		}
 
@@ -96,12 +92,11 @@ public partial class MainScene : Node2D
 
 	private void SetCameraBounds(Room room)
 	{
-		Vector2 position = room.GlobalPosition;
-		Vector2I dimensions = room.Dimensions;
+		Rect2I bounds = room.GetGlobalBoundsI();
 
-		camera2D.LimitLeft = (int)position.X;
-		camera2D.LimitRight = (int)position.X + dimensions.X * 128;
-		camera2D.LimitTop = (int)position.Y;
-		camera2D.LimitBottom = (int)position.Y + dimensions.Y * 128;
+		camera2D.LimitLeft = bounds.Position.X;
+		camera2D.LimitRight = bounds.End.X;
+		camera2D.LimitTop = bounds.Position.Y;
+		camera2D.LimitBottom = bounds.End.Y;
 	}
 }

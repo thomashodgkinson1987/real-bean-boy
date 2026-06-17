@@ -4,6 +4,8 @@
 [ext_resource type="TileSet" uid="uid://bidy5avddmjn2" path="res://resources/tile-sets/sprout-valley.tres" id="2_rp5h2"]
 [ext_resource type="TileSet" uid="uid://br4im8vss1frc" path="res://resources/tile-sets/beans.tres" id="3_ahudu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp1wf"]
+
 [node name="SproutValleyRoom2" type="Node2D" unique_id=814268595]
 script = ExtResource("1_gp1wf")
 Dimensions = Vector2i(1, 1)
@@ -13,14 +15,19 @@ position = Vector2(64, 64)
 gizmo_extents = 0.0
 metadata/_edit_lock_ = true
 
+[node name="Bounds" type="Area2D" parent="." unique_id=19310454]
+visible = false
+collision_layer = 32
+input_pickable = false
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds" unique_id=1059541657]
+visible = false
+shape = SubResource("RectangleShape2D_gp1wf")
+
 [node name="Blocker" type="TileMapLayer" parent="." unique_id=375558894]
 self_modulate = Color(1, 0, 0, 1)
 tile_map_data = PackedByteArray("AAAAAP//AwABAAAAAAABAP//AwABAAAAAAACAP//AwABAAAAAAADAP//AwABAAAAAAAEAP//AwABAAAAAAAFAP//AwABAAAAAAAGAP//AwABAAAAAAAHAP//AwABAAAAAAAIAP//AwABAAAAAAAJAP//AwABAAAAAAAKAP//AwABAAAAAAALAP//AwABAAAAAAAMAP//AwABAAAAAAANAP//AwABAAAAAAAOAP//AwABAAAAAAAPAP//AwABAAAAAAAPABAAAwABAAAAAAAOABAAAwABAAAAAAANABAAAwABAAAAAAAMABAAAwABAAAAAAALABAAAwABAAAAAAAKABAAAwABAAAAAAAJABAAAwABAAAAAAAIABAAAwABAAAAAAAHABAAAwABAAAAAAAGABAAAwABAAAAAAAFABAAAwABAAAAAAAEABAAAwABAAAAAAADABAAAwABAAAAAAACABAAAwABAAAAAAABABAAAwABAAAAAAAAABAAAwABAAAAAAA=")
-tile_set = ExtResource("2_rp5h2")
-metadata/_edit_lock_ = true
-
-[node name="CameraUpdate" type="TileMapLayer" parent="." unique_id=237156008]
-tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAQAAAAIAAQAAAAAAAQAAAAMAAQAAAAAAAQAAAAQAAQAAAAAAAQAAAAUAAQAAAAAAAQAAAAYAAQAAAAAAAQAAAAcAAQAAAAAAAQAAAAgAAQAAAAAAAQAAAAkAAQAAAAAAAQAAAAoAAQAAAAAAAQAAAAsAAQAAAAAAAQAAAAEAAQAAAAAAAQAPAAAAAQAAAAAAAQAPAAEAAQAAAAAAAQAPAAIAAQAAAAAAAQAPAAMAAQAAAAAAAQAPAAQAAQAAAAAAAQAPAAUAAQAAAAAAAQAPAAYAAQAAAAAAAQAPAAcAAQAAAAAAAQAPAAgAAQAAAAAAAQAPAAkAAQAAAAAAAQAPAAoAAQAAAAAAAQAPAAsAAQAAAAAAAQA=")
 tile_set = ExtResource("2_rp5h2")
 metadata/_edit_lock_ = true
 

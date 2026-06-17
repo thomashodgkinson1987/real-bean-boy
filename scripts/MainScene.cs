@@ -41,6 +41,7 @@ public partial class MainScene : Node2D
 		camera2D.ResetSmoothing();
 
 		currentLevel.OnEnter();
+		currentRoom.OnEnter();
 	}
 
 	public override void _Process(double delta)

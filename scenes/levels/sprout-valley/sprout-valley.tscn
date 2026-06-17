@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://428p1gnaf01u"]
 
-[ext_resource type="Script" uid="uid://cagm73ypjgk5t" path="res://scripts/Level.cs" id="1_ybmqh"]
-[ext_resource type="PackedScene" uid="uid://dhs0ybs38kqf1" path="res://scenes/levels/sprout-valley/sections/sprout-valley-one.tscn" id="2_jy5af"]
-[ext_resource type="PackedScene" uid="uid://dn1vgvgno7ujd" path="res://scenes/levels/sprout-valley/sections/sprout-valley-two.tscn" id="3_ra1m8"]
+[ext_resource type="Script" uid="uid://bhf1mhwv3i61x" path="res://scripts/Levels/SproutValley/SproutValleyLevel.cs" id="1_63kre"]
+[ext_resource type="PackedScene" uid="uid://g2ovf2uuvci0" path="res://scenes/levels/sprout-valley/rooms/sprout-valley-room-1.tscn" id="2_63kre"]
+[ext_resource type="PackedScene" uid="uid://dn1vgvgno7ujd" path="res://scenes/levels/sprout-valley/rooms/sprout-valley-room-2.tscn" id="3_ra1m8"]
 [ext_resource type="PackedScene" uid="uid://cve5ghpxsvrja" path="res://scenes/cloud-type-1.tscn" id="3_wqka4"]
-[ext_resource type="PackedScene" uid="uid://b683ohrnrbehd" path="res://scenes/levels/sprout-valley/sections/sprout-valley-three.tscn" id="4_63kre"]
+[ext_resource type="PackedScene" uid="uid://b683ohrnrbehd" path="res://scenes/levels/sprout-valley/rooms/sprout-valley-room-3.tscn" id="4_63kre"]
 [ext_resource type="PackedScene" uid="uid://dwvs5w6uy2n8n" path="res://scenes/cloud-type-2.tscn" id="4_fvvs8"]
 
 [node name="SproutValley" type="Node2D" unique_id=131412410]
-script = ExtResource("1_ybmqh")
+script = ExtResource("1_63kre")
 metadata/_edit_lock_ = true
 
 [node name="CentreMarker" type="Marker2D" parent="." unique_id=1662385544]
@@ -19,17 +19,17 @@ metadata/_edit_lock_ = true
 position = Vector2(20, 92)
 metadata/_edit_lock_ = true
 
-[node name="Sections" type="Node2D" parent="." unique_id=1470717026]
+[node name="Rooms" type="Node2D" parent="." unique_id=1470717026]
 metadata/_edit_lock_ = true
 
-[node name="SproutValleyOne" parent="Sections" unique_id=814268595 instance=ExtResource("2_jy5af")]
+[node name="SproutValleyRoom1" parent="Rooms" unique_id=814268595 instance=ExtResource("2_63kre")]
 metadata/_edit_lock_ = true
 
-[node name="SproutValleyTwo" parent="Sections" unique_id=1661544960 instance=ExtResource("3_ra1m8")]
+[node name="SproutValleyRoom2" parent="Rooms" unique_id=1661544960 instance=ExtResource("3_ra1m8")]
 position = Vector2(256, 0)
 metadata/_edit_lock_ = true
 
-[node name="SproutValleyThree" parent="Sections" unique_id=883489407 instance=ExtResource("4_63kre")]
+[node name="SproutValleyRoom3" parent="Rooms" unique_id=883489407 instance=ExtResource("4_63kre")]
 position = Vector2(384, 0)
 metadata/_edit_lock_ = true
 

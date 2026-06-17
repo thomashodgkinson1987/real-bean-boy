@@ -83,14 +83,15 @@ public partial class BeanBoy : CharacterBody2D
 		}
 	}
 
-	public Vector2 GetCentre()
+	public Vector2 GetCentre() => centreMarker.Position;
+	public Vector2 GetCentreGlobal() => centreMarker.GlobalPosition;
+	public Vector2I GetCentreI()
 	{
-		return centreMarker.Position;
+		return new Vector2I((int)centreMarker.Position.X, (int)centreMarker.Position.Y);
 	}
-
-	public Vector2 GetCentreGlobal()
+	public Vector2I GetCentreGlobalI()
 	{
-		return centreMarker.GlobalPosition;
+		return new Vector2I((int)centreMarker.GlobalPosition.X, (int)centreMarker.GlobalPosition.Y);
 	}
 
 	public Area2D GetCameraSensor()

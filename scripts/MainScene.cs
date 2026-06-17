@@ -12,8 +12,8 @@ public partial class MainScene : Node2D
 
 	private BeanBoy beanBoy;
 
-	private Level level;
-	private LevelSection levelSection;
+	private Level currentLevel;
+	private Room currentRoom;
 
 	public override void _Ready()
 	{
@@ -23,22 +23,24 @@ public partial class MainScene : Node2D
 		entitiesHolder = GetNode<Node2D>("EntitiesHolder");
 
 		// level
-		level = sproutValleyPackedScene.Instantiate<Level>();
-		levelHolder.AddChild(level);
+		currentLevel = sproutValleyPackedScene.Instantiate<Level>();
+		levelHolder.AddChild(currentLevel);
 
 		// bean boy
 		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
 		entitiesHolder.AddChild(beanBoy);
-		beanBoy.GlobalPosition = level.GetSpawnPoint().GlobalPosition;
+		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition;
 		beanBoy.GetCameraSensor().AreaEntered += OnAreaEnteredBeanBoy;
 
-		// level
-		levelSection = GetCurrentLevelSection();
+		// room
+		currentRoom = GetCurrentRoom();
 
 		// camera
-		SetCameraBounds(levelSection);
+		SetCameraBounds(currentRoom);
 		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 		camera2D.ResetSmoothing();
+
+		currentLevel.OnEnter();
 	}
 
 	public override void _Process(double delta)
@@ -55,21 +57,19 @@ public partial class MainScene : Node2D
 		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 	}
 
-	private LevelSection GetCurrentLevelSection()
+	private Room GetCurrentRoom()
 	{
-		List<LevelSection> sections = level.GetSections();
+		List<Room> rooms = currentLevel.GetRooms();
 
-		for (int i = 0; i < sections.Count; i++)
+		for (int i = 0; i < rooms.Count; i++)
 		{
-			Vector2 position = sections[i].Position;
-			Rect2I rect = sections[i].GetBounds();
+			Vector2 position = rooms[i].GlobalPosition;
+			Vector2I dimensions = rooms[i].Dimensions;
+			Rect2I rect = new Rect2I((int)position.X, (int)position.Y, dimensions.X * 128, dimensions.Y * 128);
 
-			if (beanBoy.GetCentreGlobal().X > position.X + rect.Position.X &&
-				beanBoy.GetCentreGlobal().X < position.X + rect.End.X &&
-				beanBoy.GetCentreGlobal().Y > position.Y + rect.Position.Y &&
-				beanBoy.GetCentreGlobal().Y < position.Y + rect.End.Y)
+			if (rect.HasPoint(beanBoy.GetCentreGlobalI()))
 			{
-				return sections[i];
+				return rooms[i];
 			}
 		}
 
@@ -83,21 +83,25 @@ public partial class MainScene : Node2D
 
 	private void UpdateCameraBounds()
 	{
-		if (GetCurrentLevelSection() is LevelSection liveSection && liveSection != levelSection)
+		Room newRoom = GetCurrentRoom();
+
+		if (currentRoom != null && newRoom != currentRoom)
 		{
-			levelSection = liveSection;
-			SetCameraBounds(levelSection);
+			currentRoom.OnExit();
+			currentRoom = newRoom;
+			currentRoom.OnEnter();
+			SetCameraBounds(currentRoom);
 		}
 	}
 
-	private void SetCameraBounds(LevelSection section)
+	private void SetCameraBounds(Room room)
 	{
-		Vector2 position = section.Position;
-		Rect2I rect = section.GetBounds();
+		Vector2 position = room.GlobalPosition;
+		Vector2I dimensions = room.Dimensions;
 
-		camera2D.LimitLeft = (int)position.X + rect.Position.X;
-		camera2D.LimitRight = (int)position.X + rect.End.X;
-		camera2D.LimitTop = (int)position.Y + rect.Position.Y;
-		camera2D.LimitBottom = (int)position.Y + rect.End.Y;
+		camera2D.LimitLeft = (int)position.X;
+		camera2D.LimitRight = (int)position.X + dimensions.X * 128;
+		camera2D.LimitTop = (int)position.Y;
+		camera2D.LimitBottom = (int)position.Y + dimensions.Y * 128;
 	}
 }

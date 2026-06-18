@@ -19,7 +19,6 @@ gizmo_extents = 0.0
 metadata/_edit_lock_ = true
 
 [node name="Bounds" type="Area2D" parent="." unique_id=385188246]
-visible = false
 collision_layer = 32
 input_pickable = false
 metadata/_edit_lock_ = true
@@ -102,12 +101,12 @@ metadata/_edit_lock_ = true
 position = Vector2(28, 28)
 
 [node name="WhiteSpikeBall-2" parent="SpikeBalls" unique_id=259553810 instance=ExtResource("5_5ae3o")]
-position = Vector2(36, 76)
-Direction = 0
-DirectionIndex = 2
+position = Vector2(236, 12)
+DirectionIndex = 1
 
 [node name="BlackSpikeBall" parent="SpikeBalls" unique_id=1158823129 instance=ExtResource("6_lw32p")]
-position = Vector2(84, 52)
+position = Vector2(196, 28)
+Direction = 0
 
 [node name="BlackSpikeBall-2" parent="SpikeBalls" unique_id=1997071645 instance=ExtResource("6_lw32p")]
 position = Vector2(84, 12)

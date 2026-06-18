@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://025u72pcnqaf"]
 
 [ext_resource type="SpriteFrames" uid="uid://16c0k0p5fjmb" path="res://resources/sprite-frames/green-bean.tres" id="1_rqbq1"]
-[ext_resource type="Script" uid="uid://pl41rxune65u" path="res://scripts/tiles/GreenBean.cs" id="1_wfnye"]
+[ext_resource type="Script" uid="uid://pl41rxune65u" path="res://scripts/Tiles/GreenBean.cs" id="1_wfnye"]
 [ext_resource type="AudioStream" uid="uid://bnkpmy4qmg708" path="res://assets/sounds/silence-1s.ogg" id="3_ivlya"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a323h"]

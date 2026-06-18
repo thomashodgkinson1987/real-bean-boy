@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 using Godot;
 
 public partial class MainScene : Node2D
@@ -6,7 +8,7 @@ public partial class MainScene : Node2D
 	[Export] private PackedScene beanBoyPackedScene;
 	[Export] private PackedScene sproutValleyPackedScene;
 
-	private Camera2D camera2D;
+	private CameraController camera2D;
 	private Node2D levelHolder;
 	private Node2D entitiesHolder;
 
@@ -18,7 +20,7 @@ public partial class MainScene : Node2D
 	public override void _Ready()
 	{
 		// get nodes
-		camera2D = GetNode<Camera2D>("Camera2D");
+		camera2D = GetNode<CameraController>("Camera2D");
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		entitiesHolder = GetNode<Node2D>("EntitiesHolder");
 
@@ -30,16 +32,19 @@ public partial class MainScene : Node2D
 		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
 		entitiesHolder.AddChild(beanBoy);
 		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition;
-		beanBoy.GetCameraSensor().AreaEntered += OnAreaEnteredBeanBoy;
+		beanBoy.GetRoomTransitionSensor().AreaEntered += OnAreaEnteredBeanBoy;
 
 		// room
 		currentRoom = GetCurrentRoom();
 
 		// camera
-		SetCameraBounds(currentRoom);
+		camera2D.SetLimits(currentRoom);
 		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 		camera2D.ResetSmoothing();
+		camera2D.SetMode(CameraMode.Target);
+		camera2D.SetTarget(beanBoy.CentreMarker);
 
+		// enter level and room
 		currentLevel.OnEnter();
 		currentRoom.OnEnter();
 	}
@@ -54,8 +59,6 @@ public partial class MainScene : Node2D
 			GameState.Instance.ResetSession();
 			GetTree().ReloadCurrentScene();
 		}
-
-		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 	}
 
 	private Room GetCurrentRoom()
@@ -75,29 +78,41 @@ public partial class MainScene : Node2D
 
 	private void OnAreaEnteredBeanBoy(Area2D area)
 	{
-		UpdateCameraBounds();
+		_ = CheckIfSceneTransition();
 	}
 
-	private void UpdateCameraBounds()
+	private async Task CheckIfSceneTransition()
 	{
-		Room newRoom = GetCurrentRoom();
-
-		if (currentRoom != null && newRoom != currentRoom)
+		if (GetCurrentRoom() is Room newRoom && newRoom != currentRoom)
 		{
+			beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
+			currentLevel.ProcessMode = ProcessModeEnum.Disabled;
+
 			currentRoom.OnExit();
 			currentRoom = newRoom;
 			currentRoom.OnEnter();
-			SetCameraBounds(currentRoom);
+
+			camera2D.SetLimits(currentRoom);
+
+			camera2D.GlobalPosition = camera2D.GetScreenCenterPosition();
+			camera2D.ResetPhysicsInterpolation();
+
+			camera2D.LimitEnabled = false;
+			camera2D.LimitSmoothed = false;
+			camera2D.PositionSmoothingEnabled = false;
+
+			camera2D.SetMode(CameraMode.Transition);
+			await ToSignal(camera2D, "MovementFinished");
+			camera2D.SetMode(CameraMode.Target);
+
+			camera2D.LimitEnabled = true;
+			camera2D.LimitSmoothed = true;
+			camera2D.PositionSmoothingEnabled = true;
+
+			beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
+			currentLevel.ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}
 
-	private void SetCameraBounds(Room room)
-	{
-		Rect2I bounds = room.GetGlobalBoundsI();
 
-		camera2D.LimitLeft = bounds.Position.X;
-		camera2D.LimitRight = bounds.End.X;
-		camera2D.LimitTop = bounds.Position.Y;
-		camera2D.LimitBottom = bounds.End.Y;
-	}
 }

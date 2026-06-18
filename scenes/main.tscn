@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://428p1gnaf01u" path="res://scenes/levels/sprout-valley/sprout-valley.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://c46265uyioe8m" path="res://scripts/MainScene.cs" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://belded6jdwlr" path="res://scenes/bean-boy.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://bvmr1qd0omhwg" path="res://scripts/CameraController.cs" id="4_jyhfs"]
 
 [node name="Main" type="Node2D" unique_id=284015859]
 script = ExtResource("1_sugp2")
@@ -24,6 +25,7 @@ limit_bottom = 128
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
+script = ExtResource("4_jyhfs")
 
 [node name="LevelHolder" type="Node2D" parent="." unique_id=1822118315]
 metadata/_edit_lock_ = true

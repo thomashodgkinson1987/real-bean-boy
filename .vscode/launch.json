@@ -5,7 +5,7 @@
             "name": "Launch Game (Debug)",
             "type": "coreclr",
             "request": "launch",
-            "program": "~/Godot_v4.6.3-stable_mono_linux_x86_64/Godot_v4.6.3-stable_mono_linux.x86_64",
+            "program": "godot-mono",
             "args": [
                 "--path",
                 "${workspaceFolder}"

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://chsp0rr10ss1n"]
 
 [ext_resource type="SpriteFrames" uid="uid://csch2uw8dhkoy" path="res://resources/sprite-frames/yellow-flower.tres" id="1_sgaiv"]
-[ext_resource type="Script" uid="uid://j8kc5bda7k6" path="res://scripts/tiles/YellowFlower.cs" id="2_fyjip"]
+[ext_resource type="Script" uid="uid://j8kc5bda7k6" path="res://scripts/Tiles/YellowFlower.cs" id="2_fyjip"]
 
 [node name="YellowFlower" type="AnimatedSprite2D" unique_id=334388607]
 z_index = -2

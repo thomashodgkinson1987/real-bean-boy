@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5l8s6nasl0xh"]
 
-[ext_resource type="Script" uid="uid://bqye1plpxpjwx" path="res://scripts/tiles/GoldenBean.cs" id="1_uai7x"]
+[ext_resource type="Script" uid="uid://bqye1plpxpjwx" path="res://scripts/Tiles/GoldenBean.cs" id="1_uai7x"]
 [ext_resource type="SpriteFrames" uid="uid://cf4or3ajii5rf" path="res://resources/sprite-frames/golden-bean.tres" id="1_ydcrh"]
 [ext_resource type="AudioStream" uid="uid://bnkpmy4qmg708" path="res://assets/sounds/silence-1s.ogg" id="3_7r1tk"]
 

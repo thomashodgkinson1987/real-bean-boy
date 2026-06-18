@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://i3mp7jl4r5vl"]
 
 [ext_resource type="SpriteFrames" uid="uid://bw1vg2wh5odel" path="res://resources/sprite-frames/animated-grass.tres" id="1_bfi54"]
-[ext_resource type="Script" uid="uid://ie5ro3gx3wir" path="res://scripts/tiles/AnimatedGrass.cs" id="2_ysplc"]
+[ext_resource type="Script" uid="uid://ie5ro3gx3wir" path="res://scripts/Tiles/AnimatedGrass.cs" id="2_ysplc"]
 
 [node name="AnimatedGrass" type="AnimatedSprite2D" unique_id=334388607]
 z_index = -2

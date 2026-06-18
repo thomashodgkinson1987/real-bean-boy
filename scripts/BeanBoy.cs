@@ -2,9 +2,9 @@ using Godot;
 
 public partial class BeanBoy : CharacterBody2D
 {
-	private Marker2D centreMarker;
+	public Marker2D CentreMarker;
 	private AnimatedSprite2D animatedSprite2D;
-	private Area2D cameraSensor;
+	private Area2D roomTransitionSensor;
 
 	[Export] public float Speed = 48.0f;
 	[Export] public float JumpVelocity = -64.0f;
@@ -14,9 +14,9 @@ public partial class BeanBoy : CharacterBody2D
 
 	public override void _Ready()
 	{
-		centreMarker = GetNode<Marker2D>("CentreMarker");
+		CentreMarker = GetNode<Marker2D>("CentreMarker");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-		cameraSensor = GetNode<Area2D>("CameraSensor");
+		roomTransitionSensor = GetNode<Area2D>("RoomTransitionSensor");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -83,20 +83,20 @@ public partial class BeanBoy : CharacterBody2D
 		}
 	}
 
-	public Vector2 GetCentre() => centreMarker.Position;
-	public Vector2 GetCentreGlobal() => centreMarker.GlobalPosition;
+	public Vector2 GetCentre() => CentreMarker.Position;
+	public Vector2 GetCentreGlobal() => CentreMarker.GlobalPosition;
 	public Vector2I GetCentreI()
 	{
-		return new Vector2I((int)centreMarker.Position.X, (int)centreMarker.Position.Y);
+		return new Vector2I((int)CentreMarker.Position.X, (int)CentreMarker.Position.Y);
 	}
 	public Vector2I GetCentreGlobalI()
 	{
-		return new Vector2I((int)centreMarker.GlobalPosition.X, (int)centreMarker.GlobalPosition.Y);
+		return new Vector2I((int)CentreMarker.GlobalPosition.X, (int)CentreMarker.GlobalPosition.Y);
 	}
 
-	public Area2D GetCameraSensor()
+	public Area2D GetRoomTransitionSensor()
 	{
-		return cameraSensor;
+		return roomTransitionSensor;
 	}
 
 }

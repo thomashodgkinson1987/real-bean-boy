@@ -2,16 +2,32 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
+public struct SpikeBallData
+{
+	public Vector2 Position;
+	public float Rotation;
+	public AxisX Direction;
+	public int DirectionIndex;
+}
+
 public partial class Room : Node2D
 {
 	[Export] public Vector2I Dimensions;
+
+	// nodes [start]
 
 	private Area2D bounds;
 	private CollisionShape2D boundsCollisionShape2D;
 	private RectangleShape2D boundsRectangleShape2D;
 	private Node2D checkpointsHolder;
 
+	private Node2D spikeBallsHolder;
+
+	// nodes [end]
+
 	private List<Vector2> checkpoints;
+	private List<SpikeBall> spikeBalls;
+	private List<SpikeBallData> spikeBallsDefaultData;
 
 	public override void _Ready()
 	{
@@ -27,6 +43,20 @@ public partial class Room : Node2D
 		foreach (Marker2D checkpoint in checkpointsHolder.GetChildren().Cast<Marker2D>())
 		{
 			checkpoints.Add(checkpoint.GlobalPosition);
+		}
+
+		spikeBallsHolder = GetNode<Node2D>("SpikeBalls");
+		spikeBalls = new List<SpikeBall>();
+		spikeBalls.AddRange(spikeBallsHolder.GetChildren().Cast<SpikeBall>());
+		spikeBallsDefaultData = new List<SpikeBallData>();
+		foreach (SpikeBall spikeBall in spikeBalls)
+		{
+			SpikeBallData data;
+			data.Position = spikeBall.GlobalPosition;
+			data.Rotation = spikeBall.Rotation;
+			data.Direction = spikeBall.Direction;
+			data.DirectionIndex = spikeBall.DirectionIndex;
+			spikeBallsDefaultData.Add(data);
 		}
 	}
 
@@ -44,12 +74,51 @@ public partial class Room : Node2D
 
 	public List<Vector2> GetCheckpoints() => checkpoints;
 
+	public void Reset()
+	{
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
+			SpikeBallData data = spikeBallsDefaultData[i];
+			spikeBalls[i].GlobalPosition = data.Position;
+			spikeBalls[i].Rotation = data.Rotation;
+			spikeBalls[i].Direction = data.Direction;
+			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
+		}
+	}
+
 	public virtual void OnEnter()
 	{
 		boundsCollisionShape2D.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
+			SpikeBallData data = spikeBallsDefaultData[i];
+			spikeBalls[i].GlobalPosition = data.Position;
+			spikeBalls[i].Rotation = data.Rotation;
+			spikeBalls[i].Direction = data.Direction;
+			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
+			spikeBalls[i].SetProcess(false);
+			spikeBalls[i].SetPhysicsProcess(false);
+		}
+	}
+	public virtual void OnEnterTransitionFinished()
+	{
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
+			spikeBalls[i].SetProcess(true);
+			spikeBalls[i].SetPhysicsProcess(true);
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
+		}
 	}
 	public virtual void OnExit()
 	{
 		boundsCollisionShape2D.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
+			spikeBalls[i].SetProcess(false);
+			spikeBalls[i].SetPhysicsProcess(false);
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
+		}
 	}
 }

@@ -51,6 +51,7 @@ public partial class MainScene : Node2D
 		// enter level and room
 		currentLevel.OnEnter();
 		currentRoom.OnEnter();
+		currentRoom.OnEnterTransitionFinished();
 	}
 
 	public override void _Process(double delta)
@@ -95,7 +96,7 @@ public partial class MainScene : Node2D
 		if (GetCurrentRoom() is Room newRoom && newRoom != currentRoom)
 		{
 			beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
-			currentLevel.ProcessMode = ProcessModeEnum.Disabled;
+			//currentLevel.ProcessMode = ProcessModeEnum.Disabled;
 
 			currentRoom.OnExit();
 			currentRoom = newRoom;
@@ -120,7 +121,9 @@ public partial class MainScene : Node2D
 			camera2D.PositionSmoothingEnabled = false;
 
 			camera2D.SetMode(CameraMode.Transition);
+
 			await ToSignal(camera2D, "MovementFinished");
+
 			camera2D.SetMode(CameraMode.Target);
 
 			camera2D.LimitEnabled = true;
@@ -128,7 +131,9 @@ public partial class MainScene : Node2D
 			camera2D.PositionSmoothingEnabled = true;
 
 			beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
-			currentLevel.ProcessMode = ProcessModeEnum.Inherit;
+			//currentLevel.ProcessMode = ProcessModeEnum.Inherit;
+
+			currentRoom.OnEnterTransitionFinished();
 		}
 	}
 

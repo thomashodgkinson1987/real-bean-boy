@@ -11,6 +11,11 @@ public partial class MainScene : Node2D
 	private Node2D levelHolder;
 	private Node2D entitiesHolder;
 
+	private CanvasLayer faderCanvasLayer;
+	private Control control;
+	private TextureRect faderTextureRect;
+	private AnimationPlayer faderAnimationPlayer;
+
 	private BeanBoy beanBoy;
 
 	private Level currentLevel;
@@ -24,6 +29,11 @@ public partial class MainScene : Node2D
 		levelHolder = GetNode<Node2D>("LevelHolder");
 		entitiesHolder = GetNode<Node2D>("EntitiesHolder");
 
+		faderCanvasLayer = GetNode<CanvasLayer>("CanvasLayer");
+		control = faderCanvasLayer.GetNode<Control>("Control");
+		faderTextureRect = control.GetNode<TextureRect>("Fader");
+		faderAnimationPlayer = control.GetNode<AnimationPlayer>("AnimationPlayer");
+
 		// level
 		currentLevel = sproutValleyPackedScene.Instantiate<Level>();
 		levelHolder.AddChild(currentLevel);
@@ -31,7 +41,7 @@ public partial class MainScene : Node2D
 		// bean boy
 		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
 		entitiesHolder.AddChild(beanBoy);
-		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition;
+		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition - Vector2.One * 4;
 		beanBoy.GetRoomTransitionSensor().AreaEntered += OnAreaEnteredBeanBoy;
 		beanBoy.GetHitBox().AreaEntered += OnAreaEntered_BeanBoy_HitBox;
 
@@ -86,12 +96,6 @@ public partial class MainScene : Node2D
 		_ = CheckIfSceneTransition();
 	}
 
-	private void OnAreaEntered_BeanBoy_HitBox(Area2D area)
-	{
-		beanBoy.GlobalPosition = currentCheckpoint;
-		currentRoom.Reset();
-	}
-
 	private async Task CheckIfSceneTransition()
 	{
 		if (GetCurrentRoom() is Room newRoom && newRoom != currentRoom)
@@ -138,5 +142,33 @@ public partial class MainScene : Node2D
 		}
 	}
 
+	private void OnAreaEntered_BeanBoy_HitBox(Area2D area)
+	{
+		_ = OnBeanBoyHit();
+	}
+
+	private async Task OnBeanBoyHit()
+	{
+		//beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
+		beanBoy.SetProcess(false);
+		beanBoy.SetPhysicsProcess(false);
+
+		faderAnimationPlayer.Play("fade_to_opaque");
+		await ToSignal(faderAnimationPlayer, "animation_finished");
+
+		beanBoy.GlobalPosition = currentCheckpoint - Vector2.One * 4;
+		beanBoy.Reset();
+		currentRoom.Reset();
+
+		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
+		camera2D.ResetSmoothing();
+
+		faderAnimationPlayer.Play("fade_to_transparent");
+		await ToSignal(faderAnimationPlayer, "animation_finished");
+
+		//beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
+		beanBoy.SetProcess(true);
+		beanBoy.SetPhysicsProcess(true);
+	}
 
 }

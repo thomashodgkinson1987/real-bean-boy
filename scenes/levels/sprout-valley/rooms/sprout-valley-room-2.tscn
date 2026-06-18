@@ -30,7 +30,7 @@ shape = SubResource("RectangleShape2D_gp1wf")
 metadata/_edit_lock_ = true
 
 [node name="Checkpoint1" type="Marker2D" parent="Checkpoints" unique_id=276363079]
-position = Vector2(8, 92)
+position = Vector2(12, 92)
 
 [node name="Checkpoint2" type="Marker2D" parent="Checkpoints" unique_id=1057804264]
 position = Vector2(120, 92)

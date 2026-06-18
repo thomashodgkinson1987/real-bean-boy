@@ -99,4 +99,10 @@ public partial class BeanBoy : CharacterBody2D
 	public Area2D GetRoomTransitionSensor() => roomTransitionSensor;
 	public Area2D GetHitBox() => hitBox;
 
+	public void Reset()
+	{
+		animatedSprite2D.Play("idle");
+		Velocity = Vector2.Zero;
+	}
+
 }

@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_4fstt")
 metadata/_edit_lock_ = true
 
 [node name="Checkpoint1" type="Marker2D" parent="Checkpoints" unique_id=1332589900]
-position = Vector2(244, 92)
+position = Vector2(248, 92)
 
 [node name="Blocker" type="TileMapLayer" parent="." unique_id=375558894]
 self_modulate = Color(1, 0, 0, 1)

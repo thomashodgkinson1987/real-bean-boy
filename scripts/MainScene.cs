@@ -149,7 +149,7 @@ public partial class MainScene : Node2D
 
 	private async Task OnBeanBoyHit()
 	{
-		//beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
+		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
 		beanBoy.SetProcess(false);
 		beanBoy.SetPhysicsProcess(false);
 
@@ -166,7 +166,7 @@ public partial class MainScene : Node2D
 		faderAnimationPlayer.Play("fade_to_transparent");
 		await ToSignal(faderAnimationPlayer, "animation_finished");
 
-		//beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
+		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
 		beanBoy.SetProcess(true);
 		beanBoy.SetPhysicsProcess(true);
 	}

@@ -2,14 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
-public struct SpikeBallData
-{
-	public Vector2 Position;
-	public float Rotation;
-	public AxisX Direction;
-	public int DirectionIndex;
-}
-
 public partial class Room : Node2D
 {
 	[Export] public Vector2I Dimensions;
@@ -41,23 +33,14 @@ public partial class Room : Node2D
 		checkpointsHolder = GetNode<Node2D>("Checkpoints");
 		checkpoints = new List<Vector2>();
 		foreach (Marker2D checkpoint in checkpointsHolder.GetChildren().Cast<Marker2D>())
-		{
 			checkpoints.Add(checkpoint.GlobalPosition);
-		}
 
 		spikeBallsHolder = GetNode<Node2D>("SpikeBalls");
 		spikeBalls = new List<SpikeBall>();
 		spikeBalls.AddRange(spikeBallsHolder.GetChildren().Cast<SpikeBall>());
 		spikeBallsDefaultData = new List<SpikeBallData>();
 		foreach (SpikeBall spikeBall in spikeBalls)
-		{
-			SpikeBallData data;
-			data.Position = spikeBall.GlobalPosition;
-			data.Rotation = spikeBall.Rotation;
-			data.Direction = spikeBall.Direction;
-			data.DirectionIndex = spikeBall.DirectionIndex;
-			spikeBallsDefaultData.Add(data);
-		}
+			spikeBallsDefaultData.Add(spikeBall.GetState());
 	}
 
 	public Area2D GetBoundsArea2D() => bounds;
@@ -80,10 +63,9 @@ public partial class Room : Node2D
 		{
 			SpikeBallData data = spikeBallsDefaultData[i];
 
-			spikeBalls[i].GlobalPosition = data.Position;
-			spikeBalls[i].Rotation = data.Rotation;
-			spikeBalls[i].Direction = data.Direction;
-			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+			spikeBalls[i].SetState(data);
+			spikeBalls[i].ReCast();
+			spikeBalls[i].Reset();
 
 			spikeBalls[i].SetProcess(true);
 			spikeBalls[i].SetPhysicsProcess(true);
@@ -98,10 +80,9 @@ public partial class Room : Node2D
 		{
 			SpikeBallData data = spikeBallsDefaultData[i];
 
-			spikeBalls[i].GlobalPosition = data.Position;
-			spikeBalls[i].Rotation = data.Rotation;
-			spikeBalls[i].Direction = data.Direction;
-			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+			spikeBalls[i].SetState(data);
+			spikeBalls[i].ReCast();
+			spikeBalls[i].Reset();
 
 			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
 			spikeBalls[i].SetProcess(false);

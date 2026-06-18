@@ -127,4 +127,38 @@ public partial class SpikeBall : Area2D
 	{
 		Position += Transform.X * -1;
 	}
+
+	public void Reset()
+	{
+		frameCounter = 0;
+		animatedSprite2D.Frame = 0;
+	}
+
+	public void ReCast()
+	{
+		leftRayCast2D.ForceRaycastUpdate();
+		rightRayCast2D.ForceRaycastUpdate();
+		frontRayCast2D.ForceRaycastUpdate();
+		backRayCast2D.ForceRaycastUpdate();
+	}
+
+	public SpikeBallData GetState()
+	{
+		SpikeBallData state;
+
+		state.Position = Position;
+		state.Rotation = Rotation;
+		state.Direction = Direction;
+		state.DirectionIndex = DirectionIndex;
+
+		return state;
+	}
+
+	public void SetState(SpikeBallData state)
+	{
+		Position = state.Position;
+		Rotation = state.Rotation;
+		Direction = state.Direction;
+		DirectionIndex = state.DirectionIndex;
+	}
 }

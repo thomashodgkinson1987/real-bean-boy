@@ -16,7 +16,7 @@ position = Vector2(256, 64)
 metadata/_edit_lock_ = true
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1321988054]
-position = Vector2(244, 92)
+position = Vector2(148, 76)
 
 [node name="Rooms" type="Node2D" parent="." unique_id=1470717026]
 metadata/_edit_lock_ = true

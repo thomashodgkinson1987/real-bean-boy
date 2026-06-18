@@ -4,6 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bidy5avddmjn2" path="res://resources/tile-sets/sprout-valley.tres" id="2_rp5h2"]
 [ext_resource type="TileSet" uid="uid://br4im8vss1frc" path="res://resources/tile-sets/beans.tres" id="3_ahudu"]
 [ext_resource type="PackedScene" uid="uid://c4iqi04h38sjk" path="res://scenes/platform.tscn" id="4_rp5h2"]
+[ext_resource type="PackedScene" uid="uid://csim402asud84" path="res://scenes/white-spike-ball.tscn" id="5_ahudu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rp5h2"]
 
@@ -154,3 +155,15 @@ position = Vector2(64, 80)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform-2" unique_id=1874279888]
 libraries/ = SubResource("AnimationLibrary_nbptv")
 autoplay = &"new_animation"
+
+[node name="Checkpoints" type="Node2D" parent="." unique_id=1234615188]
+metadata/_edit_lock_ = true
+
+[node name="Checkpoint1" type="Marker2D" parent="Checkpoints" unique_id=608423212]
+position = Vector2(12, 92)
+
+[node name="SpikeBalls" type="Node2D" parent="." unique_id=2128025932]
+metadata/_edit_lock_ = true
+
+[node name="WhiteSpikeBall" parent="SpikeBalls" unique_id=919842760 instance=ExtResource("5_ahudu")]
+position = Vector2(52, 68)

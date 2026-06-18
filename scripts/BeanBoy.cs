@@ -5,6 +5,7 @@ public partial class BeanBoy : CharacterBody2D
 	public Marker2D CentreMarker;
 	private AnimatedSprite2D animatedSprite2D;
 	private Area2D roomTransitionSensor;
+	private Area2D hitBox;
 
 	[Export] public float Speed = 48.0f;
 	[Export] public float JumpVelocity = -64.0f;
@@ -17,6 +18,7 @@ public partial class BeanBoy : CharacterBody2D
 		CentreMarker = GetNode<Marker2D>("CentreMarker");
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		roomTransitionSensor = GetNode<Area2D>("RoomTransitionSensor");
+		hitBox = GetNode<Area2D>("HitBox");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -94,9 +96,7 @@ public partial class BeanBoy : CharacterBody2D
 		return new Vector2I((int)CentreMarker.GlobalPosition.X, (int)CentreMarker.GlobalPosition.Y);
 	}
 
-	public Area2D GetRoomTransitionSensor()
-	{
-		return roomTransitionSensor;
-	}
+	public Area2D GetRoomTransitionSensor() => roomTransitionSensor;
+	public Area2D GetHitBox() => hitBox;
 
 }

@@ -15,6 +15,7 @@ public partial class MainScene : Node2D
 
 	private Level currentLevel;
 	private Room currentRoom;
+	private Vector2 currentCheckpoint;
 
 	public override void _Ready()
 	{
@@ -32,9 +33,13 @@ public partial class MainScene : Node2D
 		entitiesHolder.AddChild(beanBoy);
 		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition;
 		beanBoy.GetRoomTransitionSensor().AreaEntered += OnAreaEnteredBeanBoy;
+		beanBoy.GetHitBox().AreaEntered += OnAreaEntered_BeanBoy_HitBox;
 
 		// room
 		currentRoom = GetCurrentRoom();
+
+		// checkpoint
+		currentCheckpoint = currentLevel.GetSpawnPoint().GlobalPosition;
 
 		// camera
 		camera2D.SetLimits(currentRoom);
@@ -80,6 +85,11 @@ public partial class MainScene : Node2D
 		_ = CheckIfSceneTransition();
 	}
 
+	private void OnAreaEntered_BeanBoy_HitBox(Area2D area)
+	{
+		beanBoy.GlobalPosition = currentCheckpoint;
+	}
+
 	private async Task CheckIfSceneTransition()
 	{
 		if (GetCurrentRoom() is Room newRoom && newRoom != currentRoom)
@@ -90,6 +100,15 @@ public partial class MainScene : Node2D
 			currentRoom.OnExit();
 			currentRoom = newRoom;
 			currentRoom.OnEnter();
+
+			currentCheckpoint = currentRoom.GetCheckpoints()[0];
+			foreach (Vector2 checkpoint in currentRoom.GetCheckpoints())
+			{
+				if (beanBoy.GlobalPosition.DistanceSquaredTo(checkpoint) < beanBoy.GlobalPosition.DistanceSquaredTo(currentCheckpoint))
+				{
+					currentCheckpoint = checkpoint;
+				}
+			}
 
 			camera2D.SetLimits(currentRoom);
 

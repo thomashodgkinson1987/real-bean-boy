@@ -89,6 +89,7 @@ public partial class MainScene : Node2D
 	private void OnAreaEntered_BeanBoy_HitBox(Area2D area)
 	{
 		beanBoy.GlobalPosition = currentCheckpoint;
+		currentRoom.Reset();
 	}
 
 	private async Task CheckIfSceneTransition()

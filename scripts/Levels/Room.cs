@@ -79,10 +79,14 @@ public partial class Room : Node2D
 		for (int i = 0; i < spikeBalls.Count; i++)
 		{
 			SpikeBallData data = spikeBallsDefaultData[i];
+
 			spikeBalls[i].GlobalPosition = data.Position;
 			spikeBalls[i].Rotation = data.Rotation;
 			spikeBalls[i].Direction = data.Direction;
 			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+
+			spikeBalls[i].SetProcess(true);
+			spikeBalls[i].SetPhysicsProcess(true);
 			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}
@@ -93,10 +97,12 @@ public partial class Room : Node2D
 		for (int i = 0; i < spikeBalls.Count; i++)
 		{
 			SpikeBallData data = spikeBallsDefaultData[i];
+
 			spikeBalls[i].GlobalPosition = data.Position;
 			spikeBalls[i].Rotation = data.Rotation;
 			spikeBalls[i].Direction = data.Direction;
 			spikeBalls[i].DirectionIndex = data.DirectionIndex;
+
 			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
 			spikeBalls[i].SetProcess(false);
 			spikeBalls[i].SetPhysicsProcess(false);

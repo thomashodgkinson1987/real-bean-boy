@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c68ufddvxwpy4"]
+
+[ext_resource type="Texture2D" uid="uid://rd3jfnmwuw4d" path="res://resources/atlas-textures/spikes.tres" id="1_5pg7g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbcdo"]
+size = Vector2(8, 5)
+
+[node name="Spikes" type="Area2D" unique_id=919842760]
+collision_layer = 256
+input_pickable = false
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=464341269]
+texture = ExtResource("1_5pg7g")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1491996501]
+visible = false
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_xbcdo")
+metadata/_edit_lock_ = true

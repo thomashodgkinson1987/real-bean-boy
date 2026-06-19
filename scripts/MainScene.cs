@@ -208,5 +208,4 @@ public partial class MainScene : Node2D
 
 		currentRoom.OnEnterTransitionFinished();
 	}
-
 }

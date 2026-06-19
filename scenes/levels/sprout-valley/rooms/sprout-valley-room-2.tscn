@@ -60,6 +60,11 @@ tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAQABAAsAAAAAAAAAAQACAAsAAAAAAAA
 tile_set = ExtResource("2_rp5h2")
 metadata/_edit_lock_ = true
 
+[node name="Spikes" type="TileMapLayer" parent="." unique_id=1607966463]
+tile_map_data = PackedByteArray("AAADAAoAAgAAAAAAAWAGAAoAAgAAAAAAAWAKAAoAAgAAAAAAAWAFAAoAAgAAAAAAAVAJAAoAAgAAAAAAAVAMAAoAAgAAAAAAAVAEAAsAAgAAAAAAATAHAAsAAgAAAAAAATAIAAsAAgAAAAAAATALAAsAAgAAAAAAATA=")
+tile_set = ExtResource("2_rp5h2")
+metadata/_edit_lock_ = true
+
 [node name="Beans" type="TileMapLayer" parent="." unique_id=1299209077]
 tile_set = ExtResource("3_ahudu")
 metadata/_edit_lock_ = true

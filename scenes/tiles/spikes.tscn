@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://rd3jfnmwuw4d" path="res://resources/atlas-textures/spikes.tres" id="1_5pg7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xbcdo"]
-size = Vector2(8, 5)
+size = Vector2(7.5, 4.5)
 
 [node name="Spikes" type="Area2D" unique_id=919842760]
 collision_layer = 256

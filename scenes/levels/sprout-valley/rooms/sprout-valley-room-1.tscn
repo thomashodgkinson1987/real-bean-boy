@@ -58,6 +58,11 @@ tile_map_data = PackedByteArray("AAAAAAwAAwACAAAAAAABAAwAAwACAAAAAAACAAwAAwACAAA
 tile_set = ExtResource("2_pyyqj")
 metadata/_edit_lock_ = true
 
+[node name="Spikes" type="TileMapLayer" parent="." unique_id=75463737]
+tile_map_data = PackedByteArray("AAADAAUAAgAAAAAAAVACAAYAAgAAAAAAATAaAA4AAgAAAAAAAVAVAAgAAgAAAAAAAVAXAAYAAgAAAAAAAVAHAA0AAgAAAAAAAVALAA0AAgAAAAAAAWALAA4AAgAAAAAAAWAGAAgAAgAAAAAAAQARAAoAAgAAAAAAAWA=")
+tile_set = ExtResource("2_pyyqj")
+metadata/_edit_lock_ = true
+
 [node name="Beans" type="TileMapLayer" parent="." unique_id=1299209077]
 tile_map_data = PackedByteArray("AAAFAA4AAAAAAAAAAgAJAAYAAAAAAAAAAQAEAAcAAAAAAAAAAQAUAAcAAAAAAAAAAQAVAAAAAAAAAAAAAQAUAAsAAAAAAAAAAQAVAAoAAAAAAAAAAQAXAAoAAAAAAAAAAQAYAAsAAAAAAAAAAQAbAA4AAAAAAAAAAQA=")
 tile_set = ExtResource("3_6pkme")

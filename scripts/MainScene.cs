@@ -7,6 +7,8 @@ public partial class MainScene : Node2D
 	[Export] private PackedScene beanBoyPackedScene;
 	[Export] private PackedScene sproutValleyPackedScene;
 
+	// nodes [start]
+
 	private CameraController camera2D;
 	private Node2D levelHolder;
 	private Node2D entitiesHolder;
@@ -16,11 +18,13 @@ public partial class MainScene : Node2D
 	private TextureRect faderTextureRect;
 	private AnimationPlayer faderAnimationPlayer;
 
+	// nodes [end]
+
 	private BeanBoy beanBoy;
 
 	private Level currentLevel;
 	private Room currentRoom;
-	private Vector2 currentCheckpoint;
+	private Checkpoint currentCheckpoint;
 
 	public override void _Ready()
 	{
@@ -42,14 +46,14 @@ public partial class MainScene : Node2D
 		beanBoy = beanBoyPackedScene.Instantiate<BeanBoy>();
 		entitiesHolder.AddChild(beanBoy);
 		beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition - Vector2.One * 4;
-		beanBoy.GetRoomTransitionSensor().AreaEntered += OnAreaEnteredBeanBoy;
+		beanBoy.GetRoomTransitionSensor().AreaEntered += OnAreaEntered_BeanBoy_RoomTransitionSensor;
 		beanBoy.GetHitBox().AreaEntered += OnAreaEntered_BeanBoy_HitBox;
 
 		// room
 		currentRoom = GetCurrentRoom();
 
 		// checkpoint
-		currentCheckpoint = currentLevel.GetSpawnPoint().GlobalPosition;
+		currentCheckpoint = null;
 
 		// camera
 		camera2D.SetLimits(currentRoom);
@@ -91,7 +95,7 @@ public partial class MainScene : Node2D
 		return null;
 	}
 
-	private void OnAreaEnteredBeanBoy(Area2D area)
+	private void OnAreaEntered_BeanBoy_RoomTransitionSensor(Area2D area)
 	{
 		_ = CheckIfSceneTransition();
 	}
@@ -107,14 +111,14 @@ public partial class MainScene : Node2D
 			currentRoom = newRoom;
 			currentRoom.OnEnter();
 
-			currentCheckpoint = currentRoom.GetCheckpoints()[0];
-			foreach (Vector2 checkpoint in currentRoom.GetCheckpoints())
-			{
-				if (beanBoy.GlobalPosition.DistanceSquaredTo(checkpoint) < beanBoy.GlobalPosition.DistanceSquaredTo(currentCheckpoint))
-				{
-					currentCheckpoint = checkpoint;
-				}
-			}
+			// currentCheckpoint = currentRoom.GetCheckpoints()[0];
+			// foreach (Checkpoint checkpoint in currentRoom.GetCheckpoints())
+			// {
+			// 	if (beanBoy.GlobalPosition.DistanceSquaredTo(checkpoint.GetSpawnPointGlobal()) < beanBoy.GlobalPosition.DistanceSquaredTo(currentCheckpoint.GetSpawnPointGlobal()))
+			// 	{
+			// 		currentCheckpoint = checkpoint;
+			// 	}
+			// }
 
 			camera2D.SetLimits(currentRoom);
 
@@ -144,31 +148,65 @@ public partial class MainScene : Node2D
 
 	private void OnAreaEntered_BeanBoy_HitBox(Area2D area)
 	{
-		_ = OnBeanBoyHit();
+		if (area is Checkpoint checkpoint)
+		{
+			foreach (Checkpoint c in currentLevel.GetCheckpoints())
+			{
+				if (c != checkpoint && c.State == CheckpointState.Raised)
+				{
+					c.Lower();
+				}
+			}
+			if (checkpoint != currentCheckpoint)
+			{
+				checkpoint.Raise();
+				currentCheckpoint = checkpoint;
+			}
+		}
+		else
+		{
+			_ = OnBeanBoyHit();
+		}
 	}
 
 	private async Task OnBeanBoyHit()
 	{
-		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
 		beanBoy.SetProcess(false);
 		beanBoy.SetPhysicsProcess(false);
+		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled);
+
+		currentRoom.Pause();
 
 		faderAnimationPlayer.Play("fade_to_opaque");
 		await ToSignal(faderAnimationPlayer, "animation_finished");
 
-		beanBoy.GlobalPosition = currentCheckpoint - Vector2.One * 4;
-		beanBoy.Reset();
-		currentRoom.Reset();
+		if (currentCheckpoint == null)
+		{
+			beanBoy.GlobalPosition = currentLevel.GetSpawnPoint().GlobalPosition - Vector2.One * 4;
+		}
+		else
+		{
+			beanBoy.GlobalPosition = currentCheckpoint.GetSpawnPointGlobal() - Vector2.One * 4;
+		}
 
+		beanBoy.Reset();
+
+		currentRoom.OnExit();
+		currentRoom = GetCurrentRoom();
+		currentRoom.OnEnter();
+
+		camera2D.SetLimits(currentRoom);
 		camera2D.GlobalPosition = beanBoy.GetCentreGlobal();
 		camera2D.ResetSmoothing();
 
 		faderAnimationPlayer.Play("fade_to_transparent");
 		await ToSignal(faderAnimationPlayer, "animation_finished");
 
-		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
 		beanBoy.SetProcess(true);
 		beanBoy.SetPhysicsProcess(true);
+		beanBoy.CallDeferred(GodotObject.MethodName.Set, Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Inherit);
+
+		currentRoom.OnEnterTransitionFinished();
 	}
 
 }

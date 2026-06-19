@@ -20,6 +20,21 @@ public partial class Level : Node2D
 
 	public Marker2D GetSpawnPoint() => spawnPoint;
 
+	public List<Checkpoint> GetCheckpoints()
+	{
+		List<Checkpoint> checkpoints = new List<Checkpoint>();
+
+		foreach (Room room in rooms)
+		{
+			foreach (Checkpoint checkpoint in room.GetCheckpoints())
+			{
+				checkpoints.Add(checkpoint);
+			}
+		}
+
+		return checkpoints;
+	}
+
 	public List<Room> GetRooms() => rooms;
 
 	public virtual void OnEnter() { }

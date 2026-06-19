@@ -68,11 +68,11 @@ public partial class CameraController : Camera2D
 
 	public void SetLimits(Room room)
 	{
-		Rect2I limits = room.GetGlobalBoundsI();
+		Rect2I limitsRect = room.GetGlobalBoundsI();
 
-		LimitLeft = limits.Position.X;
-		LimitRight = limits.End.X;
-		LimitTop = limits.Position.Y;
-		LimitBottom = limits.End.Y;
+		LimitLeft = limitsRect.Position.X;
+		LimitRight = limitsRect.End.X;
+		LimitTop = limitsRect.Position.Y;
+		LimitBottom = limitsRect.End.Y;
 	}
 }

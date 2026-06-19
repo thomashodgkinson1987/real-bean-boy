@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c2ih8805v2uif"]
+
+[ext_resource type="Script" uid="uid://csc3bt82ehovx" path="res://scripts/Checkpoint.cs" id="1_ywqth"]
+[ext_resource type="SpriteFrames" uid="uid://lv74e5orbd3c" path="res://resources/sprite-frames/checkpoint.tres" id="1_yyywg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywqth"]
+size = Vector2(5, 15)
+
+[node name="Checkpoint" type="Area2D" unique_id=984779509]
+collision_layer = 128
+input_pickable = false
+script = ExtResource("1_ywqth")
+metadata/_edit_group_ = true
+
+[node name="CentreMarker" type="Marker2D" parent="." unique_id=373512557]
+position = Vector2(4, 8)
+gizmo_extents = 4.0
+metadata/_edit_lock_ = true
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=178667165]
+position = Vector2(4, 12)
+gizmo_extents = 4.0
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1865532932]
+sprite_frames = ExtResource("1_yyywg")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713519025]
+visible = false
+position = Vector2(4.5, 8.5)
+shape = SubResource("RectangleShape2D_ywqth")
+metadata/_edit_lock_ = true

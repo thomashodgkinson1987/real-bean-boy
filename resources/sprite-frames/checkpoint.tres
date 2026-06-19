@@ -1,0 +1,38 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://lv74e5orbd3c"]
+
+[ext_resource type="Texture2D" uid="uid://63k7nluvoeue" path="res://resources/atlas-textures/checkpoint/frame-1.tres" id="1_5lwtl"]
+[ext_resource type="Texture2D" uid="uid://gur8nxw7nqgc" path="res://resources/atlas-textures/checkpoint/frame-2.tres" id="2_klcf8"]
+[ext_resource type="Texture2D" uid="uid://855p7sdskq30" path="res://resources/atlas-textures/checkpoint/frame-3.tres" id="3_jcunn"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5lwtl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_klcf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_5lwtl")
+}],
+"loop": false,
+"name": &"lower",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_klcf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jcunn")
+}],
+"loop": false,
+"name": &"raise",
+"speed": 4.0
+}]

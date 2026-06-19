@@ -11,13 +11,14 @@ public partial class Room : Node2D
 	private Area2D bounds;
 	private CollisionShape2D boundsCollisionShape2D;
 	private RectangleShape2D boundsRectangleShape2D;
+
 	private Node2D checkpointsHolder;
 
 	private Node2D spikeBallsHolder;
 
 	// nodes [end]
 
-	private List<Vector2> checkpoints;
+	private List<Checkpoint> checkpoints;
 	private List<SpikeBall> spikeBalls;
 	private List<SpikeBallData> spikeBallsDefaultData;
 
@@ -31,9 +32,7 @@ public partial class Room : Node2D
 		boundsRectangleShape2D.Size = new Vector2((Dimensions.X * 128) - 4, (Dimensions.Y * 128) - 4);
 
 		checkpointsHolder = GetNode<Node2D>("Checkpoints");
-		checkpoints = new List<Vector2>();
-		foreach (Marker2D checkpoint in checkpointsHolder.GetChildren().Cast<Marker2D>())
-			checkpoints.Add(checkpoint.GlobalPosition);
+		checkpoints = new List<Checkpoint>(checkpointsHolder.GetChildren().Cast<Checkpoint>());
 
 		spikeBallsHolder = GetNode<Node2D>("SpikeBalls");
 		spikeBalls = new List<SpikeBall>();
@@ -42,8 +41,6 @@ public partial class Room : Node2D
 		foreach (SpikeBall spikeBall in spikeBalls)
 			spikeBallsDefaultData.Add(spikeBall.GetState());
 	}
-
-	public Area2D GetBoundsArea2D() => bounds;
 
 	public Rect2I GetBoundsI()
 	{
@@ -55,18 +52,36 @@ public partial class Room : Node2D
 		return new Rect2I((int)GlobalPosition.X, (int)GlobalPosition.Y, Dimensions.X * 128, Dimensions.Y * 128);
 	}
 
-	public List<Vector2> GetCheckpoints() => checkpoints;
+	public List<Checkpoint> GetCheckpoints() => checkpoints;
 
 	public void Reset()
 	{
 		for (int i = 0; i < spikeBalls.Count; i++)
 		{
-			SpikeBallData data = spikeBallsDefaultData[i];
-
-			spikeBalls[i].SetState(data);
-			spikeBalls[i].ReCast();
 			spikeBalls[i].Reset();
+			spikeBalls[i].SetState(spikeBallsDefaultData[i]);
+			spikeBalls[i].ReCast();
 
+			spikeBalls[i].SetProcess(true);
+			spikeBalls[i].SetPhysicsProcess(true);
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
+		}
+	}
+
+	public void Pause()
+	{
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
+			spikeBalls[i].SetProcess(false);
+			spikeBalls[i].SetPhysicsProcess(false);
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
+		}
+	}
+
+	public void Resume()
+	{
+		for (int i = 0; i < spikeBalls.Count; i++)
+		{
 			spikeBalls[i].SetProcess(true);
 			spikeBalls[i].SetPhysicsProcess(true);
 			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
@@ -76,19 +91,19 @@ public partial class Room : Node2D
 	public virtual void OnEnter()
 	{
 		boundsCollisionShape2D.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+
 		for (int i = 0; i < spikeBalls.Count; i++)
 		{
-			SpikeBallData data = spikeBallsDefaultData[i];
-
-			spikeBalls[i].SetState(data);
+			spikeBalls[i].SetState(spikeBallsDefaultData[i]);
 			spikeBalls[i].ReCast();
 			spikeBalls[i].Reset();
 
-			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
 			spikeBalls[i].SetProcess(false);
 			spikeBalls[i].SetPhysicsProcess(false);
+			spikeBalls[i].ProcessMode = ProcessModeEnum.Disabled;
 		}
 	}
+
 	public virtual void OnEnterTransitionFinished()
 	{
 		for (int i = 0; i < spikeBalls.Count; i++)
@@ -98,9 +113,11 @@ public partial class Room : Node2D
 			spikeBalls[i].ProcessMode = ProcessModeEnum.Inherit;
 		}
 	}
+
 	public virtual void OnExit()
 	{
 		boundsCollisionShape2D.SetDeferred(CollisionShape2D.PropertyName.Disabled, false);
+
 		for (int i = 0; i < spikeBalls.Count; i++)
 		{
 			spikeBalls[i].SetProcess(false);

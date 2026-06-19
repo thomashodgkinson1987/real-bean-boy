@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://b683ohrnrbehd"]
 
 [ext_resource type="Script" uid="uid://cvj36ujasqi6i" path="res://scripts/Levels/SproutValley/Rooms/SproutValleyRoom3.cs" id="1_rp5h2"]
+[ext_resource type="PackedScene" uid="uid://c2ih8805v2uif" path="res://scenes/checkpoint.tscn" id="2_pibdf"]
 [ext_resource type="TileSet" uid="uid://bidy5avddmjn2" path="res://resources/tile-sets/sprout-valley.tres" id="2_rp5h2"]
 [ext_resource type="TileSet" uid="uid://br4im8vss1frc" path="res://resources/tile-sets/beans.tres" id="3_ahudu"]
 [ext_resource type="PackedScene" uid="uid://c4iqi04h38sjk" path="res://scenes/platform.tscn" id="4_rp5h2"]
@@ -107,8 +108,8 @@ shape = SubResource("RectangleShape2D_rp5h2")
 [node name="Checkpoints" type="Node2D" parent="." unique_id=1234615188]
 metadata/_edit_lock_ = true
 
-[node name="Checkpoint1" type="Marker2D" parent="Checkpoints" unique_id=608423212]
-position = Vector2(8, 92)
+[node name="Checkpoint" parent="Checkpoints" unique_id=984779509 instance=ExtResource("2_pibdf")]
+position = Vector2(8, 80)
 
 [node name="Blocker" type="TileMapLayer" parent="." unique_id=375558894]
 self_modulate = Color(1, 0, 0, 1)

@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://855p7sdskq30"]
+
+[ext_resource type="Texture2D" uid="uid://cw5aymu68bdqi" path="res://assets/images/sprite-sheets/checkpoint.png" id="1_44cm8"]
+
+[resource]
+atlas = ExtResource("1_44cm8")
+region = Rect2(16, 0, 8, 16)
